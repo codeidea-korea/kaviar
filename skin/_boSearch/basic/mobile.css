@@ -1,0 +1,18 @@
+
+
+
+
+/* _______bo_sch //게시판 검색바 _____ */
+
+#bo_sch{z-index:9;font-size:0;--searchColor:rgba(71,78,103,0.9)}
+#pop-bo-search-set.layer-popup{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;padding:70px 20px;overflow-y:auto;}
+#pop-bo-search-set.layer-popup .popContainer .pop-inner{position:relative;z-index:6;background:transparent;border-radius:0;padding:0;font-size:14px;min-height:auto;}
+
+
+#bo_sch{--searchColor:var(--mainColor)}
+#bo_sch .searchContainer{position:relative;display:flex;align-items:center;height:54px;font-size:15px;background:var(--searchColor);padding:3px;box-shadow:0 4px 6px rgba(0,0,0,0.07);}
+#bo_sch .searchContainer input#stx{width:100%;height:100%;font-size:1em;border:0;border-radius:0;font-weight:600;color:#000;}
+#bo_sch .searchContainer .btn_submit{display:none;}
+#bo_sch .searchContainer .iconSearch{width:3em;height:100%;font-size:1em;text-align:center;display:flex;align-items:center;justify-content:center;padding-left:3px;cursor:pointer;}
+#bo_sch .searchContainer .iconSearch:before{content:'\e94d';font-family:'intaefont';font-weight:normal;color:#fff;opacity:0.85;transition: all .15s ease-in-out;}
+#bo_sch .searchContainer .iconSearch:hover:before{opacity:1;}

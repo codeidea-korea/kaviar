@@ -1,0 +1,78 @@
+@charset "utf-8";
+
+
+/*faqWrap*/
+.faqWrap{width:100%;position:relative;}
+	.faq_li{border-bottom:1px solid #e6e6e6;position:relative;}
+	.faq_li:first-child{border-top:1px solid #e6e6e6;}
+
+	.faq-header{position:relative;color:#3e3e3e;font-size:16px;font-weight:400;transition: all .2s ease-in-out;width:100%;cursor:pointer;}
+	.faq-header:hover, .open .faq-header{background:rgba(53,57,69,0.02);}
+	
+	.faq-header header{position:absolute;top:0;left:0;width:60px;height:100%;text-align:center;border-right:1px solid rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center}
+	.faq-header header .labelCheck{}
+	.faq-header header .edit-mode.on + .listNumber{display:none;}
+	.faq-header header .listNumber{
+		display:inline-block;
+		width:26px;
+		height:26px;
+		line-height:26px;
+		font-family:'Montserrat', sans-serif;
+		font-size:12px;
+		color:#7b7b7b;
+		font-weight:normal;
+		text-align:center;
+		letter-spacing:-0.06em;
+		background:#fff;
+		border:1px solid rgba(0,0,0,0.25);
+		border-radius:10px;
+		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+		}
+	
+	.faq-header .faqCate{position:absolute;top:0;left:60px;width:auto;height:100%;text-align:center;border-right:1px solid rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center}
+	.faq-header .faqCate .cate_link{font-size:13px;padding:0 15px;}
+	.faq-header .faqSubject{font-size:1em;font-weight:600;color:#0d0d0d;padding:20px 70px 20px 15px;margin-left:60px;line-height:1.6em;cursor:pointer;}
+	.faq-header .faqSubject:hover{color:#000;}
+	.faq-header .faqSubject .category.back{display:inline-block;font-size:0.9em;color:rgba(53,57,69,0.5);}
+	.faq-header .faqSubject .category.back:before{content:'';display:inline-block;width:1px;height:12px;background:rgba(53,57,69,0.1);margin:0 15px;}
+	.faq-header .faqBtn{position:absolute;top:0;right:0;width:50px;height:100%;display:flex;align-items:center;justify-content:center}
+	
+	.faq-container{display:none;}
+	.faq-container{border-top:1px solid #e6e6e6;width:100%;padding:25px 10px;font-size:14px;line-height:1.7em;z-index:3;display:none;}
+	.faq-container p{margin:5px 0;}
+	.faq-container img{max-width:100%;max-height:600px;}
+
+.attach_link{margin-top:20px;padding:20px;border-radius:3px;background:rgba(0,0,0,0.04);}
+.attach_link a{display:inline-block;font-size:12px;font-weight:600;color:rgba(0,0,0,0.85);transition:all .1s ease-in-out;}
+.attach_link a:hover{color:rgba(0,0,0,0.95);text-decoration:underline;}
+.attach_link a:before{content:'\e0e5';font-family:'intaefont';font-size:10px;margin-right:7px;}
+
+.attach_link.buttonStyle{padding:0;background:transparent;text-align:center;}
+.attach_link.buttonStyle a{display:inline-block;padding:0 20px;min-width:150px;height:44px;line-height:44px;border-radius:22px;background:#fff;color:#528fff;font-size:14px;font-weight:600;
+		border:1px solid #528fff;box-shadow:0px 5px 3px rgba(0, 0, 0, 0.015);transition:all .2s ease-in-out;}
+.attach_link.buttonStyle a:hover{background:#528fff;color:#fff;text-decoration:none;}
+.attach_link.buttonStyle a:before{display:none;}
+
+
+
+
+
+#_faq_masonry .masonry_wrap{position:relative;}
+#_faq_masonry .masonry_wrap .gall_ul{}
+#_faq_masonry .gall_li{position:relative;padding-bottom:60px;line-height:1.6em;}
+#_faq_masonry .gall_li:after{content:'';position:absolute;bottom:0;left:0;width:100%;height:1px;background:rgba(0,0,0,0.15);transition:all .2s ease-in-out;}
+#_faq_masonry .gall_li .labelCheck{left:-2px;top:-21px;}
+#_faq_masonry .gall_li .faqContents{display:flex;flex-direction:column;gap:10px;}
+#_faq_masonry .gall_li .faqContents .bo_cate_link{font-size:13px;}
+#_faq_masonry .gall_li .faqContents .textSubject{font-size:18px;font-weight:600;color:#0d0d0d;line-height:1.4em;}
+#_faq_masonry .gall_li .faqContents .textSubject:hover{position:relative;z-index:16;}
+#_faq_masonry .gall_li .faqContents .cate_link{display:inline-block;font-size:12px;font-weight:600;}
+#_faq_masonry .gall_li .faqContents .category{display:inline-block;font-size:12px;font-weight:600;color:rgba(53,57,69,0.4);}
+#_faq_masonry .gall_li .faqContents .con{position:relative;font-size:15px;line-height:1.7em;font-weight:400;word-break: keep-all;color:#5a5a5a;}
+#_faq_masonry .gall_li .faqContents .con a{color:#5a5a5a;}
+#_faq_masonry .gall_li .faqContents .title + con{margin-top:15px;}
+#_faq_masonry .gall_li .faqContents .more{position:absolute;right:0;bottom:5px;font-size:0;color:rgba(71,78,103,0.5);transition:all 0.2s cubic-bezier(0.5,0,0,1.25);}
+#_faq_masonry .gall_li .faqContents .more:before{content:'\e910';font-family:'intaefont';font-size:15px;}
+
+#_faq_masonry .gall_li:hover:after{height:4px;background:#000;}
+#_faq_masonry .gall_li .faqContents:hover .more{color:#000;}

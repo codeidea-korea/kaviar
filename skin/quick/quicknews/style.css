@@ -1,0 +1,86 @@
+
+#quickNewsWrap{}
+
+/*─────────────────────────────────────────────────
+										퀵뉴스 오프너
+─────────────────────────────────────────────────*/
+.quickNews_opener{
+	position:fixed;
+	top:0px;
+	right:0px;
+	z-index:51;	
+	width:50px;
+	height:100%;
+	text-align:center;
+	background:var(--mainColor);
+	color:#fff;
+	box-shadow:5px 3px 3px rgba(0,0,0,0.14);
+	transition:all .15s ease-in-out;
+	cursor:pointer;
+	box-shadow:-7px 0 7px rgba(0,0,0,0.01);
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	direction: ltr;
+	-ms-writing-mode: tb-lr;
+	writing-mode: vertical-lr;
+	text-orientation: upright;
+	}
+.quickNews_opener:hover{width:60px;padding-right:10px;}
+.quickNews_opener .title{font-size:16px;font-weight:400;line-height:1.7em;transition:all .2s ease-in-out;font-family:"NanumSquare", sans-serif;font-size:18px;font-weight:200;line-height:1.3em;}
+.quickNews_opener .icon_quickNew_opener{}
+
+
+#quickNews-container{position:fixed;top:0;right:0;width:350px;height:100%;background:#fff;z-index:999;border-left:1px solid rgba(0,0,0,0.1);box-shadow:-5px 0 8px rgba(0,0,0,0.02);transform:translateX(1000px)}
+#quickNews-container .btnSetting{position:absolute;top:15px;right:65px;z-index:5;}
+
+/*─────────────────────────────────────────────────
+										퀵뉴스 헤더
+─────────────────────────────────────────────────*/
+.quickNews_header{position:absolute;top:0;left:0;width:100%;height:50px;display:flex;align-items:center;padding:0;font-size:14px;font-weight:600;background:rgba(71,78,103,0.13);z-index:3;}
+.quickNews_header .qn_tabs{position:relative;width:calc(100% - 56px);height:50px;display:flex;align-items:center;}
+.quickNews_header .qn_tabs .tab{flex:1;display:inline-flex;align-items:center;justify-content:center;padding:0 20px;width:50%;height:50px;color:rgba(71,78,103,0.4);cursor:pointer;transition:all .2s ease-in-out;}
+.quickNews_header .qn_tabs .tab:not(.group_tab){max-width:50%;}
+.quickNews_header .qn_tabs .tab.group_tab{flex:1.3}
+.quickNews_header .qn_tabs .tab:not(.active):hover{color:rgba(71,78,103,0.8);}
+.quickNews_header .qn_tabs .tab.active{background:#fff;color:#000;}
+.quickNews_header .qn_page_active{font-size:17px;font-weight:700;}
+
+
+/*─────────────────────────────────────────────────
+										퀵뉴스 콘텐츠
+─────────────────────────────────────────────────*/
+.quickNews{position:absolute;top:50px;left:0;width:100%;height:calc(100% - 50px);padding:0 0 25px 0;overflow-y:auto;z-index:2;}
+	.qn_ul{position:relative;width:100%;}
+	.qn_ul .qn_li{position:relative;width:100%;padding:25px 23px;border-bottom:1px solid rgba(0,0,0,0.07);}
+	.qn_ul .qn_li:last-child{border-bottom:0;}
+	.qn_ul .qn_li.active{background:rgba(0,0,0,0.02);}
+	.qn_ul .qn_li .qnContents{display:flex;flex-direction:column;gap:15px}
+		.qnContents .qnCon_text{display:flex;flex-direction:column;gap:10px}
+		.qnContents .qnCon_text .qnSubject{font-size:15px;font-weight:600;color:#2b2c30;line-height:1.4em;}
+		.qnContents .qnCon_text .qnContent{font-size:12px;font-weight:400;color:#6f7381;line-height:1.4em;}
+		.qnContents .qnCon_text .category{font-size:0.95em;color:rgba(71,78,103,0.6);font-weight:var(--bold);margin-top:5px;}
+		.qnContents .qnCon_text .tagSet{margin-top:5px;}
+
+.quickNews:not(.open){display:none;}
+	
+	.qnCon_thumb{position:relative;}
+	.qnCon_thumb a:after{position:absolute;top:10px;right:10px;margin:0;z-index:2;opacity:0;color:#fff;}
+	.qnCon_thumb a:hover:after{opacity:0.9}
+
+
+.quickNews_closer{cursor:pointer;}
+.quickNews_closer:before{content:'\e337';font-family:'newfont';font-size:21px;color:#4c4e56;font-weight:normal;width:30px;height:30px;text-align:center;line-height:30px;cursor:pointer;
+	position:absolute;top:12px;right:14px;z-index:13;display:inline-block;transition:all .2s ease-in-out;}
+.quickNews_closer:hover:before{color:#17181a;}
+
+
+.quickNews .list-btn-set a{width:calc(50% - 5px);}
+
+
+
+#quickNewsWrap .gr_id_bo_table{display:flex;align-items:center;margin-bottom:10px;}
+#quickNewsWrap .gr_id_bo_table li{font-size:12px;color:rgba(71,78,103,0.75);}
+#quickNewsWrap .gr_id_bo_table li:not(:last-child):after{content:'>';font-size:12px;margin:0 5px;color:rgba(53,57,69,0.7);}
+#quickNewsWrap .gr_id_bo_table a:hover{color:var(--blue);}
+#quickNewsWrap .gr_id_bo_table .bo_table{font-weight:800;}

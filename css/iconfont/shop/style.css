@@ -1,0 +1,79 @@
+@font-face {
+  font-family: 'shop';
+  src:  url('fonts/shop.eot?tgpx6');
+  src:  url('fonts/shop.eot?tgpx6#iefix') format('embedded-opentype'),
+    url('fonts/shop.ttf?tgpx6') format('truetype'),
+    url('fonts/shop.woff?tgpx6') format('woff'),
+    url('fonts/shop.svg?tgpx6#shop') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-shop-"], [class*="icon-shop-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'shop' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-shop-shoparrow-down:before{content:"\e900";}
+.icon-shop-shoparrow-left:before{content:"\e901";}
+.icon-shop-shoparrow-right:before{content:"\e902";}
+.icon-shop-shoparrow-up:before{content:"\e903";}
+.icon-shop-shopbook:before{content:"\e905";}
+.icon-shop-shopbox:before{content:"\e909";}
+.icon-shop-shopcalendar:before{content:"\e90c";}
+.icon-shop-shopcamera:before{content:"\e90e";}
+.icon-shop-shopclock:before{content:"\e90f";}
+.icon-shop-shopdownload:before{content:"\e910";}
+.icon-shop-shopgift:before{content:"\e911";}
+.icon-shop-shopheart:before{content:"\e912";}
+.icon-shop-shophelp-circle:before{content:"\e913";}
+.icon-shop-shophexagon:before{content:"\e914";}
+.icon-shop-shophome:before{content:"\e915";}
+.icon-shop-shopimage:before{content:"\e916";}
+.icon-shop-shopinfo:before{content:"\e917";}
+.icon-shop-shoplink:before{content:"\e918";}
+.icon-shop-shoplink-2:before{content:"\e919";}
+.icon-shop-shopmenu:before{content:"\e91a";}
+.icon-shop-shopmessage-circle:before{content:"\e91b";}
+.icon-shop-shopmessage-square:before{content:"\e91c";}
+.icon-shop-shopminus:before{content:"\e91d";}
+.icon-shop-shopmore-horizontal:before{content:"\e91e";}
+.icon-shop-shopmore-vertical:before{content:"\e91f";}
+.icon-shop-shoppackage:before{content:"\e920";}
+.icon-shop-shopphone:before{content:"\e921";}
+.icon-shop-shopplus:before{content:"\e922";}
+.icon-shop-shopsearch:before{content:"\e923";}
+.icon-shop-shopshare:before{content:"\e924";}
+.icon-shop-shopshare-2:before{content:"\e925";}
+.icon-shop-shopshopping-bag:before{content:"\e926";}
+.icon-shop-shopshopping-cart:before{content:"\e927";}
+.icon-shop-shoptrash-2:before{content:"\e928";}
+.icon-shop-shoptruck:before{content:"\e929";}
+.icon-shop-shopuser:before{content:"\e92a";}
+.icon-shop-shopuser-check:before{content:"\e92b";}
+.icon-shop-shopusers:before{content:"\e92c";}
+.icon-shop-shopx:before{content:"\e92d";}
+.icon-shop-shop-1:before{content:"\e92e";}
+.icon-shop-shop-2:before{content:"\e92f";}
+.icon-shop-shop-3:before{content:"\e930";}
+.icon-shop-shopic_1:before{content:"\e906";}
+.icon-shop-shopic_2:before{content:"\e907";}
+.icon-shop-shopic_3:before{content:"\e908";}
+.icon-shop-shopkakao:before{content:"\e90a";}
+.icon-shop-shopnaver:before{content:"\e90b";}
+.icon-shop-shoptimer:before{content:"\e90d";}
+.icon-shop-shopstar:before{content:"\e904";}
+.icon-shop-shopstar-half:before{content:"\e931";}
+.icon-shop-shopstar-half-l:before{content:"\e932";}
+.icon-shop-shopstar-half-r:before {content:"\e933";}

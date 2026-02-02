@@ -1,0 +1,41 @@
+
+
+/*─────────────────────────────────────────────────
+										_popup_form
+─────────────────────────────────────────────────*/
+
+
+[class*='hdIcon_']{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;}
+[class*='hdIcon_'] img{max-width:100%;}
+
+.hdIcon_cart .myIcon:before{content:'\e926';font-family:'shop';font-size:26px;font-weight:normal;}
+.hdIcon_search .myIcon:before{content:'\e923';font-family:'shop';font-size:27px;font-weight:normal;}
+.hdIcon_home .myIcon:before{content:'\e915';font-family:'shop';font-size:27px;font-weight:normal;}
+.hdIcon_store .myIcon:before{content:'\e9bd';font-family:'intaefont';font-size:26px;font-weight:normal;}
+.hdIcon_brand .myIcon:before{content:'\e9ce';font-family:'myfont';font-size:26px;font-weight:normal;}
+
+
+
+
+
+
+
+
+
+
+#shop_top_menu{position:relative;display:flex;flex-direction:column;gap:10px;}
+#shop_top_menu > li{position:relative;display:flex;align-items:center;gap:10px;}
+#shop_top_menu > li:first-child{margin-top:15px;}
+#shop_top_menu .menuform{flex:1;display:flex;align-items:center;gap:5px;}
+
+
+
+[class*='ic_']:after{content:'';font-family:'shop';font-size:22px;display:inline-flex;align-items:center;justify-content:center;}
+.ic_home:after{content:'\e915';}
+.ic_gnb:after{content:'\e91a';font-size:23px;}
+.ic_search:after{content:'\e923';}
+.ic_store:after{content:'\e9bd';font-family:'intaefont';}
+.ic_my:after{content:'\e92a';}
+
+
+.labelInput[class*='ic_']:after{margin-left:15px;}

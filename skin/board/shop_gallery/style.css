@@ -1,0 +1,24 @@
+@charset "utf-8";
+
+
+
+
+#bo_banner{margin-bottom:50px;}
+
+
+
+
+
+
+
+.gall_li .gallContents{position:relative;}
+.gall_li .gallContents a:after{display:none}
+.gall_li .gallContents .gall_thumb{position:relative;}
+.gall_li .gallContents .gall_thumb img{transition:all .4s ease-in-out;}
+.gall_li .gallContents .gall_thumb .thumb-noimg{position:relative;display:block;width:100%;background:rgba(0,0,0,0.2);overflow:hidden;}
+.gall_li .gallContents .gall_thumb .thumb-noimg:before{content:'';font-size:0;height:0;margin:0;width:100%;display:block;}
+.gall_li:hover .gallContents .gall_thumb img{transform:scale(1.1)}
+.gall_li .gallContents .gall_thumb .layerCon{position:absolute;top:0;left:0;width:100%;height:100%;padding:20px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:15px;--layerColor:#fff;background:rgba(0,0,0,0.4);transition:all .2s ease-in-out;}
+.gall_li .gallContents .gall_thumb .layerCon .ca_name{font-size:17px;font-weight:500;line-height:1em;color:var(--layerColor);padding-bottom:10px;border-bottom:2px solid var(--layerColor);}
+.gall_li .gallContents .gall_thumb .layerCon .textSubject{font-size:20px;font-weight:600;color:var(--layerColor);text-align:center;}
+.gall_li:hover .gallContents .layerCon{background:rgba(0,0,0,0.4);}

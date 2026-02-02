@@ -1,0 +1,8 @@
+
+
+
+/*─────────────────────────────────────────────────
+										안내글
+─────────────────────────────────────────────────*/
+* + p.help-block:not(.lg\:top), p.help-block:not(.lg\:top) + *{margin-top:10px;}
+.help-block.lg\:top{position:absolute;font-size:12px;margin-top:-22px}

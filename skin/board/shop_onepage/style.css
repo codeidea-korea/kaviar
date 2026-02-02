@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+
+
+#bo_v_btnSet{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;padding:10px;}
+#bo_v_btnSet [class*='btn_']{padding:0 15px;height:38px;font-size:14px;display:inline-flex;align-items:center;justify-content:center;gap:5px;border-radius:4px;}
+#bo_v_btnSet [class*='btn_']:before{display:none;}
+#bo_v_btnSet .btn_del{border:1px solid var(--red);background:transparent;color:var(--red)}
+#bo_v_btnSet .btn_edit{background-color:var(--mainColor);min-width:70px;}

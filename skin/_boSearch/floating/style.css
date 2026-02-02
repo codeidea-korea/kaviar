@@ -1,0 +1,33 @@
+
+
+/* _______boSearch //게시판 검색바 _____ */
+
+#bo_sch .btnSetting{position:absolute;top:-10px;left:-10px;z-index:10;}
+#bo_sch{position:fixed;top:120px;left:30px;z-index:29;margin-top:40px;display:inline-flex;align-items:center;justify-content:center;font-size:15px;--searchColor:var(--mainColor)}
+#floatingSearch{}
+#floatingSearch .searchOpener{position:relative;z-index:9;display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;background:var(--searchColor);border-radius:50%;color:#fff;cursor:pointer;box-shadow:0 4px 5px rgba(0,0,0,0.06);}
+#floatingSearch .searchOpener:before{content:'\e94f';font-family:'intaefont';}
+#floatingSearch.open .searchOpener{box-shadow:none !important;}
+#floatingSearch.open .searchOpener:before{content:'\e929';font-size:0.8em}
+
+#floatingSearch .seachContainer{position:absolute;top:0;left:23px;width:300px;height:46px;padding-left:30px;z-index:1;border:2px solid var(--searchColor);background:#fff;border-radius:30px;border-top-left-radius:0;border-bottom-left-radius:0;box-shadow:0 7px 8px rgba(0,0,0,0.1);
+	display:inline-flex;align-items:center;justify-content:center;transition:all 0.2s cubic-bezier(0.5,0,0,1.25);}
+#floatingSearch .seachContainer input#stx{height:100%;width:100%;font-size:1em;padding-left:10px;margin:0;background:#fff;border:0;box-shadow:none;border-top-right-radius:20px;border-bottom-right-radius:20px;}
+#floatingSearch .seachContainer .btn_submit{visibility:hidden;opacity:0;font-size:0;display:none;}
+#floatingSearch .seachContainer .iconSearch{position:absolute;top:4px;right:4px;z-index:8;border-radius:50%;font-size:1em;color:var(--searchColor);width:34px;height:34px;
+	display:inline-flex;align-items:center;justify-content:center;text-align:center;transition:all .2s ease-in-out;cursor:pointer;}
+#floatingSearch .seachContainer .iconSearch:before{content:'\e94d';font-family:'intaefont';font-weight:normal;}
+#floatingSearch .seachContainer .iconSearch:hover{opacity:1;background:var(--mainColor);color:#fff;}
+
+#bo_sch .seachContainer .bootstrap-select{height:46px;margin-left:-40px;}
+#bo_sch .seachContainer .bootstrap-select .dropdown-toggle{font-size:0.9em;font-weight:600;padding-left:40px;padding-right:45px;background:var(--searchColor);color:#fff;height:100%;border:0;border-radius:30px;}
+#bo_sch .seachContainer .bootstrap-select .dropdown-toggle .caret{color:#fff;padding-right:15px;}
+#bo_sch .seachContainer .bootstrap-select .dropdown-toggle .caret:before{color:#fff;}
+
+
+#floatingSearch:not(.open) .seachContainer{visibility:hidden;opacity:0;width:10px;}
+#floatingSearch.open .seachContainer{opacity:1;visibility:visible;}
+
+
+
+

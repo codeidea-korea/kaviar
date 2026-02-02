@@ -1,0 +1,110 @@
+<?php
+include_once('./_common.php');
+define("_MYADDRESS_", true);
+
+if (!$is_member)
+    goto_url(G5_BBS_URL."/login.php?url=".urlencode(G5_SHOP_URL.'/myaddress.php'));
+
+$ad_id = isset($_REQUEST['ad_id']) ? (int) $_REQUEST['ad_id'] : 0;
+
+if($w == 'd') {
+    $sql = " delete from {$g5['g5_shop_order_address_table']} where mb_id = '{$member['mb_id']}' and ad_id = '$ad_id' ";
+    sql_query($sql);
+    goto_url($_SERVER['SCRIPT_NAME']);
+}
+
+$sql_common = " from {$g5['g5_shop_order_address_table']} where mb_id = '{$member['mb_id']}' ";
+
+$sql = " select count(ad_id) as cnt " . $sql_common;
+$row = sql_fetch($sql);
+$total_count = $row['cnt'];
+
+$rows = $config['cf_page_rows'];
+$total_page  = ceil($total_count / $rows);  // 전체 페이지 계산
+if ($page < 1) { $page = 1; } // 페이지가 없으면 첫 페이지 (1 페이지)
+$from_record = ($page - 1) * $rows; // 시작 열을 구함
+
+$myad_sql = " select *
+            $sql_common
+            order by ad_default desc, ad_id desc
+            limit $from_record, $rows";
+$myad_result = sql_query($myad_sql);
+
+
+/*if(!sql_num_rows($result))
+    alert_close('배송지 목록 자료가 없습니다.'); */
+
+$update_url = G5_HTTPS_SHOP_URL.'/myaddress_form.php';
+
+
+if (G5_IS_MOBILE && is_file(G5_MSHOP_PATH.'/myaddress.php')) {
+    include_once(G5_MSHOP_PATH.'/myaddress.php');
+    return;
+}
+
+// 테마에 myaddress.php 있으면 include
+if(defined('G5_THEME_SHOP_PATH')) {
+    $theme_myaddress_file = G5_THEME_SHOP_PATH.'/myaddress.php';
+    if(is_file($theme_myaddress_file)) {
+        include_once($theme_myaddress_file);
+        return;
+        unset($theme_myaddress_file);
+    }
+}
+
+$g5['title'] = "배송지 관리";
+include_once('./_head.php');
+?>
+
+
+<div id="myaddress">
+	
+	<?php include_once(G5_SHOP_PATH.'/_my_head.php'); ?>
+
+	<div id="_myContainer" class="max-width">
+		<?php include_once(G5_SHOP_PATH.'/_my_gnb.php'); ?>
+		<div id="_myContainer_con">
+			<div class="_myCon_title">배송지관리</div>
+			<ul class="myaddress_ul">
+				<?php for($i=0; $row=sql_fetch_array($myad_result); $i++) { ?>
+				<li class="li_addr">
+					<div class="addr_hd">
+						<?php if($row['ad_subject']) echo '<span class="add_subject">'.$row['ad_subject'].'</span>'; ?>
+						<span class="add_name"><?=get_text($row['ad_name'])?></span>
+						<?php if($row['ad_default']) echo '<div class="tag">기본배송지</div>'; ?>
+					</div>
+					<div class="addr_addr"><?php echo print_address($row['ad_addr1'], $row['ad_addr2'], $row['ad_addr3'], $row['ad_jibeon']); ?></div>
+					<div class="addr_tel"><?php echo $row['ad_hp']; ?></div>
+					<div class="addr_btnSet">
+						<a href="<?=$update_url?>?w=u&amp;ad_id=<?php echo $row['ad_id']; ?>" class="_btn/small">수정</a>
+						<a href="<?php echo $_SERVER['SCRIPT_NAME']; ?>?w=d&amp;ad_id=<?php echo $row['ad_id']; ?>" id="btn_del" class="del_address _btn/small/red/line/transparent">삭제</a>
+					</div>
+				</li>
+				<?php
+				}
+				if(!sql_num_rows($myad_result)) echo '<li class="p15 py30 fs15 tcenter color-gray">배송지 목록 자료가 없습니다.</li>';
+				?>
+			</ul>
+
+			<div class="flex flex-middle flex-center gap15 mt50">
+				<a href="<?=$update_url?>" type="submit" class="btn_submit _btn/lg/line/mainColor/transparent w-400">+ 배송지 추가</a>
+			</div>
+
+			<?php echo get_paging($config['cf_mobile_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr&amp;page="); ?>
+		</div>
+	</div>
+</div>
+
+
+
+<script>
+$(function() {
+    $(".del_address").on("click", function() {
+        return confirm("배송지 목록을 삭제하시겠습니까?");
+    });
+});
+</script>
+
+
+<?php
+include_once('./_tail.php');

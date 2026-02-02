@@ -1,0 +1,11 @@
+{
+    "require": {
+        "google/auth": "^1.37",
+        "google/apiclient": "^2.12.1",
+        "guzzlehttp/guzzle": "^7.0",
+        "symfony/dom-crawler": "^5.4",
+        "symfony/css-selector": "^5.4",
+        "fabpot/goutte": "^4.0",
+        "symfony/browser-kit": "^5.4"
+    }
+}

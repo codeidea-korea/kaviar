@@ -1,0 +1,21 @@
+
+
+#container #bo_title{display:none !important;}
+
+#bo_cate .boCateContainer .btnSetting{position:absolute;top:-15px;left:5px;right:auto;}
+#bo_cate{width:100%;background:transparent;padding:0;margin-bottom:0;}
+.boCateContainer{position:relative;text-align:center;z-index:13;width:100%;font-size:0;z-index:60;margin:15px auto;--color:#272626}
+.boCateContainer .bootstrap-select{width:100%;max-width:100% !important;padding:0;border:0;}
+.boCateContainer .bootstrap-select .dropdown-toggle{position:relative;width:100%;font-size:16px;height:42px;font-weight:400;border-radius:5px;color:var(--color) !important;line-height:1em;padding:0 15px;
+	background:transparent;overflow:visible;}
+.boCateContainer .bootstrap-select .dropdown-toggle.active,
+.boCateContainer .bootstrap-select .dropdown-toggle.focus,
+.boCateContainer .bootstrap-select .dropdown-toggle:active,
+.boCateContainer .bootstrap-select .dropdown-toggle:focus,
+.boCateContainer .bootstrap-select .dropdown-toggle:hover{background:transparent;box-shadow:none;}
+.boCateContainer .open > .dropdown-toggle{z-index:100;}
+.boCateContainer .bootstrap-select .dropdown-toggle .caret{position:absolute;right:0.5em;display:flex;align-items:center;justify-content:center;}
+.boCateContainer .bootstrap-select .dropdown-toggle .caret:before{font-size:1em;}
+.boCateContainer .bootstrap-select.open .dropdown-toggle .caret:before{}
+.boCateContainer.stxOn .bootstrap-select .dropdown-toggle {font-size:40px;}
+.boCateContainer .stx{font-size:28px;font-weight:400;color:#6b6969;display:inline-block;background:rgba(71,78,103,0.5);color:#fff;padding:0 15px;height:39px;line-height:39px;border-radius:18px;margin-bottom:20px;vertical-align:middle;}

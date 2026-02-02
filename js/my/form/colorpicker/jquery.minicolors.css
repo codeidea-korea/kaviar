@@ -1,0 +1,111 @@
+
+
+.minicolors{position:relative;width:auto;display:inline-block;}
+.minicolors-sprite{background-image:url('./jquery.minicolors.png');}
+.minicolors-swatch{vertical-align:middle;background-position:-80px 0;padding:0;margin:0;display:inline-block;z-index:3;cursor:pointer;border:1px solid rgba(0,0,0,0.8);}
+.minicolors-swatch-color{position:absolute;top:0;left:0;right:0;bottom:0;z-index:3;width:100%;height:100%;}
+.minicolors input[type=hidden] + .minicolors-swatch{position:static;cursor:pointer;}
+.minicolors input[type=hidden][disabled] + .minicolors-swatch{cursor:default;}
+.minicolors-swatch.selected{border-color:#000;}
+
+
+
+/* Panel */
+.minicolors-panel.minicolors-visible{display:block;}
+.minicolors-panel{width:178px;}
+
+
+
+/* Panel positioning */
+
+.minicolors-position-top .minicolors-panel{top:-154px;}
+.minicolors-position-right .minicolors-panel{right:0;top:var(--form-height);}
+.minicolors-position-bottom .minicolors-panel{top:auto;}
+.minicolors-position-left .minicolors-panel{left:0;}
+
+.minicolors .minicolors-grid{position:relative;top:1px;left:1px;width:150px;height:150px;margin-bottom:2px;background-position:-120px 0;cursor:crosshair;box-sizing:content-box;}
+.minicolors .minicolors-grid-inner{position:absolute;top:0;left:0;width:150px;height:150px;border:1px solid rgba(0,0,0,0.2);}
+.minicolors-slider-saturation .minicolors-grid{background-position:-420px 0;}
+.minicolors-slider-saturation .minicolors-grid-inner{background-position:-270px 0;background-image:inherit;}
+.minicolors-slider-brightness .minicolors-grid{background-position:-570px 0;}
+.minicolors-slider-brightness .minicolors-grid-inner{background-color:black;}
+.minicolors-slider-wheel .minicolors-grid{background-position:-720px 0;}
+.minicolors-slider, .minicolors-opacity-slider{position:absolute;top:11px;right:10px;width:20px;height:150px;background-color:white;background-position:0 0;cursor:row-resize;}
+.minicolors-slider-saturation .minicolors-slider{background-position:-60px 0;}
+.minicolors-slider-brightness .minicolors-slider{background-position:-20px 0;}
+.minicolors-slider-wheel .minicolors-slider{background-position:-20px 0;}
+.minicolors-opacity-slider{right:10px;background-position:-40px 0;display:none;}
+
+/*
+[dir=rtl] .minicolors .minicolors-grid{right:1px;}
+[dir=rtl] .minicolors-slider,
+[dir=rtl] .minicolors-opacity-slider{right:152px;}
+[dir=rtl] .minicolors-opacity-slider{right:173px;}
+[dir=rtl] .minicolors-theme-default.minicolors-position-left .minicolors-input{padding-right:inherit;padding-left:26px;}
+[dir=rtl] .minicolors-theme-default .minicolors-input{text-align:right;unicode-bidi:plaintext;padding-left:1px;padding-right:26px;}
+[dir=rtl] .minicolors-inline .minicolors-panel{right:auto;}
+*/
+
+.minicolors-with-opacity .minicolors-panel{width:202px;}
+.minicolors-with-opacity .minicolors-slider{right:35px;}
+.minicolors-with-opacity .minicolors-opacity-slider{right:10px;display:block;}
+
+
+/* Pickers */
+.minicolors-grid .minicolors-picker{position:absolute;top:70px;left:70px;width:12px;height:12px;border:solid 1px black;border-radius:10px;margin-top:-6px;margin-left:-6px;background:none;}
+.minicolors-grid .minicolors-picker > div{position:absolute;top:0;left:0;width:8px;height:8px;border-radius:8px;border:solid 2px white;box-sizing:content-box;}
+.minicolors-picker{position:absolute;top:0;left:0;width:18px;height:2px;background:white;border:solid 1px black;margin-top:-2px;box-sizing:content-box;}
+
+
+
+
+/* Inline controls */
+.minicolors-inline{display:inline-block;}
+.minicolors-inline .minicolors-input{display:none !important;}
+.minicolors-inline .minicolors-panel{position:relative;top:auto;left:auto;box-shadow:none;z-index:auto;display:inline-block;}
+
+
+
+
+
+
+
+
+
+
+
+
+/*─────────────────────────────────────────────────
+										커스텀
+─────────────────────────────────────────────────*/
+input.minicolors-input{width:auto;width:166px;width:14em;display:inline-block;}
+.minicolors-input-swatch{position:absolute;top:4px;right:4px;border-radius:2px;width:calc(var(--form-height) - 8px);height:calc(var(--form-height) - 8px);}
+.minicolors input[type='hidden'] + .minicolors-input-swatch{position:relative;overflow:hidden;width:calc(var(--form-height) - 4px);height:calc(var(--form-height) - 4px);border-radius:2px;top:auto;right:auto;}
+
+.minicolors-panel{position:absolute;background:white;border:solid 1px #CCC;box-shadow:0 0 20px rgba(0, 0, 0, .2);z-index:99999;box-sizing:content-box;display:none;padding:10px;border-radius:4px;}
+	ul.minicolors-swatches{margin-top:10px;display:flex;align-items:center;flex-wrap:wrap;gap:5px;}
+	ul.minicolors-swatches li.minicolors-swatch{position:relative;margin:0;padding:0;list-style:none;width:18px;height:18px;border-radius:2px;overflow:hidden;cursor:pointer;}
+
+input.minicolors-input.inline + .minicolors-input-swatch{position:relative;top:auto;right:auto;left:auto;}
+
+input.minicolors-input.inline{position:absolute !important;top:34px !important;left:12px !important;visibility:hidden;opacity:0 !important;transition:0 !important;margin:0 !important;transition:none !important;
+	background:rgba(71,78,103,0.15);border:0;box-shadow:none !important;}
+.minicolors.minicolors-focus input.minicolors-input.inline{opacity:1 !important;visibility:visible;z-index:199999;font-size:11px;min-width:auto;width:180px;height:25px;}
+.minicolors-panel.inline-input .minicolors-sprite:not(.minicolors-swatch){margin-top:35px;}
+
+
+.labelColor-hiddenSet{display:flex;gap:5px;height:var(--form-height);border:var(--form-border);border-left:0;border-top-right-radius:var(--form-radius);border-bottom-right-radius:var(--form-radius);padding:0 5px;
+	display:inline-flex;align-items:center;justify-content:center;}
+.labelColor-hidden{position:relative;}
+.labelColor-hidden input.colorpicker{position:absolute !important;top:34px;left:12px;visibility:hidden;opacity:0 !important;transition:0 !important;margin:0 !important;transition:none !important;
+	background:rgba(71,78,103,0.15);border:0;box-shadow:none !important;}
+.labelColor-hidden .minicolors.minicolors-focus input.colorpicker{opacity:1 !important;visibility:visible;z-index:199999;font-size:11px;min-width:auto;width:180px;height:25px;}
+.labelColor-hidden .minicolors.minicolors-focus  .minicolors-sprite:not(.minicolors-swatch){margin-top:32px;}
+.labelColor-hidden .minicolors-input-swatch{position:relative !important;top:auto !important;right:auto !important;width:calc(var(--form-height) - 10px)!important;height:calc(var(--form-height) - 10px)!important;}
+.labelColor-hidden.small{--form-height:28px}
+.labelColor-hidden.small input.colorpicker{top:31px !important;}
+
+
+
+.labelColor-hidden .minicolors-position-right .minicolors-panel{top:calc(var(--form-height) - 5px);}
+.labelColor-hidden .minicolors-position-right input.colorpicker{top:calc(var(--form-height) + 5px);left:auto;right:32px;}

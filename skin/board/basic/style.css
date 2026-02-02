@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+
+.tbl_wrap td .bo_notice{font-weight:400;}
+
+
+#bo_w {}
+.tbl_frm01 .calendar{padding:0 6px; color:#fff; background:#648cff;}
+.tbl_frm01 .calendar:before{
+	content:'\e103';
+	font-family:'newfont';
+	font-size:17px;
+	font-weight:normal;
+	display:inline-block;
+	vertical-align:middle;
+	margin-top:-2px;
+	}

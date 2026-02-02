@@ -1,0 +1,5 @@
+
+
+
+[class*='_btn'][class*='\/gray']{--btn-color:#757575 !important;}
+[class*='_btn'][class*='\/gray']:hover{--btn-color:#5A5A5A !important}
