@@ -243,7 +243,8 @@ if($is_kakaopay_use) {
 					echo number_format($sum['qty']);
 				echo '</div>';
 				echo '<div class="li_ct_price">';
-                    echo number_format($row['ct_origin_price'] * $sum['qty']);
+                    //echo number_format($row['ct_origin_price'] * $sum['qty']);
+                    echo number_format($sell_price); 
 				echo '</div>';
 				
 			if($member['mb_grade'] < 6 || $member['mb_grade'] == 7 || $member['mb_grade'] == 8){
