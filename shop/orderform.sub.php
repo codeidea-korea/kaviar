@@ -803,7 +803,7 @@ if($is_kakaopay_use) {
 				<ul class="_list_info line">
 					<li>
 						<div class="label">주문 금액</div>
-						<p><?=number_format($tot_prices);?> 원</p>
+						<p><?=number_format($tot_sell_price);?> 원</p>
 					</li>
 					<li>
 						<div class="label">주문할인</div>
