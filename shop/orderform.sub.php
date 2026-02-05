@@ -806,10 +806,10 @@ if($is_kakaopay_use) {
 						<div class="label">주문 금액</div>
 						<p><?=number_format($tot_sell_price);?> 원</p>
 					</li>
-					<li>
+					<!-- <li>
 						<div class="label">주문할인</div>
 						<p><span id="ct_tot_coupon">0</span> 원</p>
-					</li>
+					</li> -->
 					<?php if(!$it_type) { ?>
 					<li>
 						<div class="label">배송비</div>
