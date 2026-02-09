@@ -111,7 +111,7 @@ if($is_name || $is_password) {
 		if($is_password) $wr_guest .= '<input type="password" name="wr_password" id="wr_password" '.$password_required.' class="'.$password_required.' '.$wr_password_size.'" maxlength="20"'.(!G5_IS_MOBILE?' data-label="비밀번호"':'').'>';
 		if($is_mail && G5_IS_MOBILE) $wr_guest .= '<label class="label">이메일</label>';
 		if($is_mail) {
-			$wr_guest .= '<input type="'.(G5_IS_MOBILE?'email':'text').'" name="wr_email" value="'.$email.'" class="emailCheck '.(G5_IS_MOBILE?'w-full':'w-220').'" required maxlength="255"'.(!G5_IS_MOBILE?' data-label="이메일"':'').'>';
+			$wr_guest .= '<input type="'.(G5_IS_MOBILE?'email':'text').'" name="wr_email" value="'.$email.'" class="required emailCheck '.(G5_IS_MOBILE?'w-full':'w-220').'" required maxlength="255"'.(!G5_IS_MOBILE?' data-label="이메일"':'').'>';
 			$wr_guest .= '<div class="emailCheck-msg"></div>';
 		}
 		$wr_guest .= '</div>';
