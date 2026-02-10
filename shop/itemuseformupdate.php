@@ -1,6 +1,7 @@
 <?php
 include_once('./_common.php');
 include_once(G5_LIB_PATH.'/my/sms.aligo.lib.php');
+include_once(G5_LIB_PATH.'/mailer.lib.php');
 
 if (!$is_member) {
     alert_close("사용후기는 회원만 작성이 가능합니다.");
