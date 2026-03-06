@@ -27,6 +27,15 @@ add_stylesheet('<link rel="stylesheet" href="'.get_url($board_skin_url.'/style.c
         <?=$wr_guest?>
 
 		<?php// if($wr_include || $wr_option) echo '<div class="wr-group">'.$wr_include.$wr_option.'</div>'; ?>
+
+		<?php if($is_member) { ?>
+		<div class="wr-list wr_subject" id="wrSubject">
+			<div class="wr-list-label"><label>이메일</label></div>
+			<div class="wr-list-con">
+				<input type="text" name="wr_email" value="<?=$write['wr_email']?>" id="wr_email" required class="<?=G5_IS_MOBILE?'w-full':'w-230'?> required" maxlength="255" placeholder="연락받으실 이메일을 입력해주세요.">
+			</div>
+		</div>
+		<?php } ?>
 		
 		<div class="wr-list wr_subject" id="wrSubject">
 			<div class="wr-list-label"><label>연락처</label></div>

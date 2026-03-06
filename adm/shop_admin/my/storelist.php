@@ -52,7 +52,8 @@ $qstr  = $qstr.'&amp;sca='.$sca.'&amp;page='.$page.'&amp;save_stx='.$stx;
 
 $listall = '<a href="'.$_SERVER['SCRIPT_NAME'].'" class="ov_listall">전체목록</a>';
 
-$write_pages = get_paging($rows, $page, $total_page, shop_short_url_my('shopStore','',$qstr.'&amp;page='));
+//$write_pages = get_paging($rows, $page, $total_page, shop_short_url_my('shopStore','',$qstr.'&amp;page='));
+$write_pages = get_paging($rows, $page, $total_page, $_SERVER['SCRIPT_NAME'].'?'.$qstr.'&amp;page=');
 
 $store_id = isset($_REQUEST['store_id']) ? preg_replace('/[^0-9]/', '', $_REQUEST['store_id']) : 0;
 if($store_id) {
