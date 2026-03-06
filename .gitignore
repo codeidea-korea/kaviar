@@ -54,5 +54,6 @@ Desktop.ini
 *.zip
 *.tar.gz
 *.rar
+**/backup/
 repomix-output.xml
 vendor.tar
