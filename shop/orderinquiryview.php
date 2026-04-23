@@ -213,7 +213,8 @@ if($od['od_pg'] == 'lg') {
 					- $od['od_cart_coupon'] - $od['od_coupon'] - $od['od_send_coupon']
 					- $od['od_cancel_price'];
 
-                    
+             
+/*
 // 원주문 데이터 가져오기
 $oo_sql = "select od_data from {$g5['g5_shop_order_table']} where od_id = '$od_id'";
 $oo_row = sql_fetch($oo_sql);
@@ -222,6 +223,7 @@ if($oo_row['od_data'] != "") {
     $od_data = unserialize(base64_decode($oo_row['od_data']));
     $od = $od_data;
 }
+*/
 
 
 
@@ -575,7 +577,7 @@ if($oo_row['od_data'] != "") {
 
 
 
-    <div class="sod_right" class="mt70">        
+    <div class="sod_right mt70">        
         <div class="fs20 fw700 pb15 border-bottom mb15">결제합계</div>
         <section id="sod_fin_tot">
             <ul class="formContainer gap20">

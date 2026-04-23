@@ -837,7 +837,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row"><label for="od_invoice">운송장번호</label></th>
+                    <th scope="row"><label for="od_invoice">운송장번호<span style="color:red"> *</span></label></th>
                     <td>
                         <?php if ($config['cf_sms_use'] && $default['de_sms_use5']) { ?>
                         <input type="checkbox" name="od_sms_baesong_check" id="od_sms_baesong_check">
@@ -848,7 +848,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row"><label for="od_delivery_company">배송회사</label></th>
+                    <th scope="row"><label for="od_delivery_company">배송회사<span style="color:red"> *</span></label></th>
                     <td>
                         <input type="checkbox" id="od_delivery_chk" value="<?php echo $default['de_delivery_company']; ?>" onclick="chk_delivery_company()">
                         <label for="od_delivery_chk">기본 배송회사로 설정</label><br>
@@ -856,7 +856,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row"><label for="od_invoice_time">배송일시</label></th>
+                    <th scope="row"><label for="od_invoice_time">배송일시<span style="color:red"> *</span></label></th>
                     <td>
                         <input type="checkbox" id="od_invoice_chk" value="<?php echo date("Y-m-d H:i:s", G5_SERVER_TIME); ?>" onclick="chk_invoice_time()">
                         <label for="od_invoice_chk">현재 시간으로 설정</label><br>
