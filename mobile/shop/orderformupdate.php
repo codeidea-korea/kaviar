@@ -137,7 +137,7 @@ if($is_member) {
         $sql = " select cp_id, cp_method, cp_target, cp_type, cp_price, cp_trunc, cp_minimum, cp_maximum
                     from {$g5['g5_shop_coupon_table']}
                     where cp_id = '$cid'
-                      and mb_id IN ( '{$member['mb_id']}', '전체회원' )
+                      and (mb_id IN ( '{$member['mb_id']}', '전체회원' ) or mb_grade like '%{$member['mb_grade']}%')
                       and cp_start <= '".G5_TIME_YMD."'
                       and cp_end >= '".G5_TIME_YMD."'
                       and cp_method IN ( 0, 1 ) ";
