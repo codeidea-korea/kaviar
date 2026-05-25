@@ -170,18 +170,10 @@ else // 장바구니에 담기
             $io_value = isset($_POST['io_value'][$it_id][$k]) ? $_POST['io_value'][$it_id][$k] : '';
 			
 
-			$it_price = get_time_price($it['it_id']) ? $it['it_time_price'] : $it['it_price']; //인태
-			$ct_origin_price = get_origin_price($it['it_id']);
-
-			if($it_price == $it['it_time_price']){
-				$ct_time_price = $it_price;
-			}else{
-				$ct_time_price = 0;
-			}
-
-			if($it['it_grade'] == 1){
-				$it_price = get_grade_price($it_price); //준섭 등급별금액
-			}
+			$price_info = get_item_price_info($it);
+			$it_price = $price_info['price'];
+			$ct_origin_price = $price_info['origin_price'];
+			$ct_time_price = $price_info['ct_time_price'];
 			
             // 선택옵션정보가 존재하는데 선택된 옵션이 없으면 건너뜀
             if($lst_count && $io_id == '')
@@ -234,7 +226,10 @@ else // 장바구니에 담기
                 }
 
                 $sql3 = " update {$g5['g5_shop_cart_table']}
-                            set ct_qty = ct_qty + '$ct_qty'
+                            set ct_qty = ct_qty + '$ct_qty',
+                                ct_price = '$it_price',
+                                ct_origin_price = '$ct_origin_price',
+                                ct_time_price = '$ct_time_price'
                             where ct_id = '{$row2['ct_id']}' ";
                 sql_query($sql3);
                 continue;
@@ -450,18 +445,10 @@ if($_SERVER['REMOTE_ADDR']=='59.15.184.2'){
             $io_value = isset($_POST['io_value'][$it_id][$k]) ? $_POST['io_value'][$it_id][$k] : '';
 			
 			
-			$it_price = get_time_price($it['it_id']) ? $it['it_time_price'] : $it['it_price']; //인태
-			$ct_origin_price = get_origin_price($it['it_id']);
-
-			if($it_price == $it['it_time_price']){
-				$ct_time_price = $it_price;
-			}else{
-				$ct_time_price = 0;
-			}
-
-			if($it['it_grade'] == 1){
-				$it_price = get_grade_price($it_price); //준섭 등급별금액
-			}
+			$price_info = get_item_price_info($it);
+			$it_price = $price_info['price'];
+			$ct_origin_price = $price_info['origin_price'];
+			$ct_time_price = $price_info['ct_time_price'];
 			
             // 선택옵션정보가 존재하는데 선택된 옵션이 없으면 건너뜀
             if($lst_count && $io_id == '')
@@ -508,7 +495,10 @@ if($_SERVER['REMOTE_ADDR']=='59.15.184.2'){
                 }
 
                 $sql3 = " update {$g5['g5_shop_cart_table']}
-                            set ct_qty = ct_qty + '$ct_qty'
+                            set ct_qty = ct_qty + '$ct_qty',
+                                ct_price = '$it_price',
+                                ct_origin_price = '$ct_origin_price',
+                                ct_time_price = '$ct_time_price'
                             where ct_id = '{$row2['ct_id']}' ";
                 sql_query($sql3);
                 continue;

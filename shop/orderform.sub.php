@@ -60,6 +60,7 @@ if($is_kakaopay_use) {
                         b.ca_id2,
                         b.ca_id3,
                         b.it_notax,
+						a.ct_time_price,
 						a.ct_origin_price
                    from {$g5['g5_shop_cart_table']} a left join {$g5['g5_shop_item_table']} b on ( a.it_id = b.it_id )
                   where a.od_id = '$s_cart_id'
@@ -247,7 +248,7 @@ if($is_kakaopay_use) {
                     echo number_format($sell_price); 
 				echo '</div>';
 				
-			if($member['mb_grade'] < 6 || $member['mb_grade'] == 7 || $member['mb_grade'] == 8){
+			if($row['ct_time_price'] > 0){
 				echo '<div>';
 					echo '<div class="li_ct_price" id="li_ct_sale_price">';
 					if($row['ct_origin_price']-$row['ct_price'] > 0){
@@ -266,6 +267,16 @@ if($is_kakaopay_use) {
 						echo '0';
 					}
 					echo '</div>';
+				echo '</div>';
+			}else if($row['ct_origin_price']-$row['ct_price'] > 0){
+				echo '<div>';
+					echo '<div class="li_ct_price" id="li_ct_sale_price">';
+						echo '할인<br>-'.number_format(($row['ct_origin_price']-$row['ct_price']) * $sum['qty']);
+					echo '</div>';
+				echo '</div>';
+			}else{
+				echo '<div>';
+					echo '<div class="li_ct_price" id="li_ct_sale_price">0</div>';
 				echo '</div>';
 			}
 				

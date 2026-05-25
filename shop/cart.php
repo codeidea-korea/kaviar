@@ -229,7 +229,7 @@ include_once('./_head.php');
 
 
 
-						<?
+						<?php
 							
 						echo '</div>';
 						echo '<div class="li_ct_price">';
@@ -239,31 +239,27 @@ include_once('./_head.php');
 							$cnt = 0;
 							$mem_p = 0;
 							$time_p = 0;
-							if($member['mb_grade'] != 6){
-								if($row['ct_time_price'] > 0){
-									$time_p = $row['ct_origin_price'] - $row['ct_time_price'];
-									echo "타임특가<br> -".number_format($time_p * $row['ct_qty']);
-									$cnt = 1;
-								}else{
-									echo "0";
-									$time_p = 0;
-								}
-							
-								if($cnt == 1){
-									echo "<br><br>";
-								}
-							}
-							if($member['mb_grade'] == 6){
+							if($row['ct_time_price'] > 0){
+								$time_p = $row['ct_origin_price'] - $row['ct_price'];
+								echo "타임특가<br> -".number_format($time_p * $row['ct_qty']);
+								$cnt = 1;
+							}else if($member['mb_grade'] == 6){
 								if($row['ct_price'] != $row['ct_origin_price']){
 									$mem_p = $row['ct_origin_price'] - $row['ct_price'];
 									echo "임직원할인<br> -".number_format($mem_p * $row['ct_qty']);
 								}else{
 									$mem_p = 0;
+									echo "0";
 								}
+							}else if($row['ct_price'] != $row['ct_origin_price']){
+								$mem_p = $row['ct_origin_price'] - $row['ct_price'];
+								echo "할인<br> -".number_format($mem_p * $row['ct_qty']);
+							}else{
+								echo "0";
 							}
 						
 							
-							$sale_price = ($time_p + $mem_p) * $row['ct_qty'];
+							$sale_price = ($row['ct_origin_price'] - $row['ct_price']) * $row['ct_qty'];
 							//echo number_format($sale_price);
 						echo '</div>';
 						echo '<div class="li_point">';

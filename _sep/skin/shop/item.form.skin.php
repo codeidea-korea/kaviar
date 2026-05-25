@@ -117,11 +117,11 @@ $mbg = sql_fetch("select * from `g5_member_grade` where idx = '".$member['mb_gra
 								if($it['it_grade']){ 
 									$discount_rate = round(($it['it_price'] - get_price($it)) / $it['it_price'] * 100);
 									echo '<span class="price before">'.display_price($it['it_price']).'</span>';
-									echo '<br><span class="rate" style="padding-right: 20px;">'.$mbg['g_discount'].'%</span>';	
+									echo '<br><span class="rate" style="padding-right: 20px;">'.$discount_rate.'%</span>';
 								}else{
 									$discount_rate = round(($it['it_cust_price'] - get_price($it)) / $it['it_cust_price'] * 100);
 									echo '<span class="price before">'.display_price($it['it_cust_price']).'</span>';
-									echo '<br><span class="rate" style="padding-right: 20px;">'.$mbg['g_discount'].'%</span>';
+									echo '<br><span class="rate" style="padding-right: 20px;">'.$discount_rate.'%</span>';
 								}
 								echo '<span class="price">'.display_price(get_price($it)).'</span>';
 							}else{

@@ -857,36 +857,60 @@ function display_price($price, $tel_inq=false)
 
 // 금액표시
 // $it : 상품 배열
-function get_price($it)
+function get_item_price_info($it)
 {
     global $member;
 
+    $origin_price = (int)$it['it_price'];
+    $time_price = (int)get_time_price($it['it_id']);
+    $price = $origin_price;
+    $sale_type = '';
+
+    if((int)$member['mb_grade'] === 6) {
+        $grade_price = $origin_price;
+        if($it['it_grade'] == 1) {
+            $grade_price = (int)get_grade_price($origin_price);
+        }
+
+        $price = $grade_price;
+        if($grade_price < $origin_price) {
+            $sale_type = 'grade';
+        }
+
+        if($time_price > 0 && $time_price < $origin_price && ($sale_type === '' || $time_price <= $price)) {
+            $price = $time_price;
+            $sale_type = 'time';
+        }
+    } else {
+        if($time_price > 0) {
+            $price = $time_price;
+            $sale_type = 'time';
+        }
+
+        if($it['it_grade'] == 1) {
+            $before_grade_price = $price;
+            $price = (int)get_grade_price($price);
+            if($price < $before_grade_price) {
+                $sale_type = $sale_type ? $sale_type.'_grade' : 'grade';
+            }
+        }
+    }
+
+    return array(
+        'price' => (int)$price,
+        'origin_price' => $origin_price,
+        'time_price' => $time_price,
+        'ct_time_price' => ($time_price > 0 && strpos($sale_type, 'time') !== false) ? $time_price : 0,
+        'sale_type' => $sale_type
+    );
+}
+
+function get_price($it)
+{
     if ($it['it_tel_inq']) return '전화문의';
 
-    $price = $it['it_price'];
-	
-	//타임특가 여부 확인 - 인태 수정
-	if($member['mb_grade'] == 6){
-
-		if($it['it_grade'] == 1){
-			$price = get_grade_price($price);
-		}
-	
-	}else{
-		
-		if(get_time_price($it['it_id'])) {
-			//$price = $it['it_time_price'];
-			$price = get_time_price($it['it_id']) ? $it['it_time_price'] : $it['it_price'];
-		}
-		
-		if($it['it_grade'] == 1){
-			$price = get_grade_price($price);
-		}
-	
-	}
-
-
-    return (int)$price;
+    $price_info = get_item_price_info($it);
+    return (int)$price_info['price'];
 }
 
 // 금액표시
@@ -2992,18 +3016,24 @@ function before_check_cart_price($s_cart_id, $is_ct_select_condition=false, $is_
             $update_querys['ct_price'] = $it['it_price'];
         }*/
 
-		//인태
-		$it_price = get_time_price($it['it_id']) ? $it['it_time_price'] : $it['it_price'];
-		
-		if($it['it_grade'] == 1){
-			$it_price = get_grade_price($it_price);
-		}
+		$price_info = get_item_price_info($it);
+		$it_price = $price_info['price'];
+		$ct_origin_price = $price_info['origin_price'];
+		$ct_time_price = $price_info['ct_time_price'];
 		
 		
 
 		if((int)$it_price !== (int)$row['ct_price'] ){
             // 장바구니 테이블 상품 가격과 상품 테이블의 상품 가격이 다를경우
             $update_querys['ct_price'] = $it_price;
+        }
+
+		if(isset($row['ct_time_price']) && (int)$ct_time_price !== (int)$row['ct_time_price'] ){
+            $update_querys['ct_time_price'] = $ct_time_price;
+        }
+
+		if(isset($row['ct_origin_price']) && (int)$ct_origin_price !== (int)$row['ct_origin_price'] ){
+            $update_querys['ct_origin_price'] = $ct_origin_price;
         }
 
 
@@ -3297,24 +3327,20 @@ function is_coupon_downloaded($mb_id, $cz_id)
 //														타임 특가 진행여부 (인태)
 // ───────────────────────────────────────────────────────────────────
 function get_time_price($it_id) {
-	global $member, $g5;
+	global $g5;
 
 	$sql = " select it_timer, it_timer_start, it_time_price from {$g5['g5_shop_item_table']} where it_id = '$it_id' ";
 	
     $it = sql_fetch($sql);
-	if($member['mb_grade'] != 6){
-		if($it['it_timer_start'] <= date("Y-m-d H:i:s") && $it['it_timer'] >= date("Y-m-d H:i:s") ){
-			//$startdate = date("Y-m-d H:i:s", time());
-			$startdate = $it['it_timer_start'] ? $it['it_timer_start'] : '';
-			$enddate = $it['it_timer'] ? $it['it_timer'].':00' : '';
-			$timediffer = strtotime($enddate) - strtotime($startdate);
+	if($it['it_timer_start'] <= date("Y-m-d H:i:s") && $it['it_timer'] >= date("Y-m-d H:i:s") ){
+		//$startdate = date("Y-m-d H:i:s", time());
+		$startdate = $it['it_timer_start'] ? $it['it_timer_start'] : '';
+		$enddate = $it['it_timer'] ? $it['it_timer'].':00' : '';
+		$timediffer = strtotime($enddate) - strtotime($startdate);
 
-			$content = '';
-			$content = $it['it_time_price'] && $it['it_timer'] && $it['it_timer_start'] && $timediffer > 0 ? $it['it_time_price'] : '';
-			
-		}else{
-			$content = '';
-		}
+		$content = '';
+		$content = $it['it_time_price'] && $it['it_timer'] && $it['it_timer_start'] && $timediffer > 0 ? $it['it_time_price'] : '';
+
 	}else{
 		$content = '';
 	}
