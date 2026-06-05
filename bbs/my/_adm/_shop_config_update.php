@@ -78,8 +78,19 @@ if(is_uploaded_file($_FILES['shop_favorite_mobile']['tmp_name'])) {
 	}
 }
 
+$de_listtype_card_width = isset($_POST['de_listtype_card_width']) ? (int)$_POST['de_listtype_card_width'] : 0;
+if($de_listtype_card_width < 0) $de_listtype_card_width = 0;
+
+if(!isset($default['de_listtype_card_width'])) {
+	sql_query(" ALTER TABLE {$g5['g5_shop_default_table']} ADD `de_listtype_card_width` int(11) NOT NULL DEFAULT '0' ", false);
+}
+
 $sql = " update {$g5['config_table']} set
 			cf_title = '{$_POST['cf_title']}' ";
+sql_query($sql);
+
+$sql = " update {$g5['g5_shop_default_table']} set
+			de_listtype_card_width = '{$de_listtype_card_width}' ";
 sql_query($sql);
 
 echo "<script>

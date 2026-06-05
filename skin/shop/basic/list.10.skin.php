@@ -12,6 +12,19 @@ $mba = sql_fetch("select * from `g5_member_grade` where idx = '".$member['mb_gra
 $_get_item_option = '';
 $_get_item_option .= $list_mod <= 1 ? ' _wz' : ' _gall';
 if($list_mod > 2.25) $_get_item_option .= ' itemSize_small';
+
+$listtype_card_script = isset($_SERVER['SCRIPT_NAME']) ? str_replace('\\', '/', $_SERVER['SCRIPT_NAME']) : '';
+$listtype_card_type = isset($_GET['type']) ? preg_replace('/[^0-9a-z]/i', '', $_GET['type']) : '';
+$listtype_card_width = isset($default['de_listtype_card_width']) ? (int)$default['de_listtype_card_width'] : 0;
+$listtype_card_enabled = preg_match('#/shop/listtype\.php$#', $listtype_card_script) && $listtype_card_type === '1' && $listtype_card_width > 0;
+$listtype_card_style = '';
+if($listtype_card_enabled) {
+	$_get_item_option .= ' cardSize_control';
+	$listtype_card_gap = 16;
+	$listtype_card_cols = is_numeric($list_mod) && $list_mod > 0 ? (float)$list_mod : 4;
+	$listtype_card_list_width = ceil(($listtype_card_width * $listtype_card_cols) + ($listtype_card_gap * max(0, $listtype_card_cols - 1)));
+	$listtype_card_style = ' style="--card-max-width:'.$listtype_card_width.'px;--card-list-width:'.$listtype_card_list_width.'px;"';
+}
 ?>
 
 <!-- 상품진열 10 시작 { -->
@@ -40,11 +53,12 @@ foreach((array) $list as $row){
 		$i++;   // 변수 i 를 증가
 
 		if ($i === 1) {
-			echo '<ul class="itemsContainer '.$_get_item_option.'" data-cols="'.$list_mod.'" data-gap="16">';
+			echo '<ul class="itemsContainer '.$_get_item_option.'" data-cols="'.$list_mod.'" data-gap="16"'.$listtype_card_style.'>';
 			//echo '<ul class="itemsContainer _gall '.$items_skin.$_get_item_option.'" data-cols="'.($items_cols?$items_cols:'2').'" style="'.($items_gap?'--item-gap:'.$items_gap.'px;':'').($items_radius?'--items-radius:'.$items_radius.'px;':'').'" data-gap="'.($items_gap?$items_gap:'15').'">';
 		}
 		
 		echo '<li class="item-list sct_li">';
+			if($listtype_card_enabled) echo '<div class="itemCardInner">';
 			if($this->view_it_img) {
 				$itemtype_tag = '';
 				$itemtype = explode("|", $default['itemtype']);
@@ -150,6 +164,7 @@ foreach((array) $list as $row){
 				echo get_it_tag($row['it_id'], 4);
 			echo '</div>';
 			if($is_shop_manager) echo '<a href="'.G5_ADMIN_URL.'/shop_admin/itemform.php?w=u&amp;it_id='.$row['it_id'].'&amp;ca_id='.$row['ca_id'].'" class="" target="_blank"><span class="btnEdit">수정</span></a>';
+			if($listtype_card_enabled) echo '</div>';
 		echo '</li>';
 	}
 }

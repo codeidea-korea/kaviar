@@ -1,5 +1,6 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
+$de_listtype_card_width = isset($default['de_listtype_card_width']) ? (int)$default['de_listtype_card_width'] : 0;
 ?>
 
 <form name="_adm_form" method="post" action="<?=$_adm_update_url?>/_shop_config_update.php" onsubmit="return _adm_form_submit(this);" autocomplete="off" enctype="multipart/form-data">
@@ -14,6 +15,13 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 				<input type="text" name="cf_title" value="<?php echo get_sanitize_input($config['cf_title']); ?>" id="cf_title" required class="required frm_input" size="40">
 			</div>
 		</div>		
+		<div class="form-list">
+			<div class="form-label"><label>신제품 카드 최대폭</label></div>
+			<div class="formCon">
+				<input type="text" name="de_listtype_card_width" value="<?php echo $de_listtype_card_width; ?>" id="de_listtype_card_width" class="frm_input" size="5"> px
+				<p class="help-block mt5">신제품(/shop/listtype.php?type=1) 페이지에만 적용됩니다. 0 또는 빈 값이면 기존처럼 1줄 4개 슬롯을 꽉 채웁니다.</p>
+			</div>
+		</div>
 		<div class="form-list">
 			<div class="form-label"><label>쇼핑몰 로고</label></div>
 			<div class="formCon">
