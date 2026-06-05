@@ -42,7 +42,22 @@ else
 
 
 //상단에 상품 카테고리 출력
-echo get_shopCate_list("slide|auto|12", $img=false, $all=true, $class="shopCate-tags p15 pb0", G5_SHOP_URL.'/listtype.php?type='.$type);
+$listtype_cate_class = "shopCate-tags p15 pb0";
+$listtype_cate_wrap_style = '';
+$listtype_card_width = isset($default['de_listtype_card_width']) ? (int)$default['de_listtype_card_width'] : 0;
+$listtype_cate_center = !G5_IS_MOBILE && $type === '1' && $listtype_card_width > 0;
+
+if($listtype_cate_center) {
+	$listtype_card_gap = 16;
+	$listtype_card_cols = is_numeric($list_mod) && $list_mod > 0 ? (float)$list_mod : 4;
+	$listtype_card_list_width = ceil(($listtype_card_width * $listtype_card_cols) + ($listtype_card_gap * max(0, $listtype_card_cols - 1)));
+	$listtype_cate_wrap_style = ' style="--card-list-width:'.$listtype_card_list_width.'px;"';
+	echo '<div class="listtypeCateWrap"'.$listtype_cate_wrap_style.'>';
+}
+
+echo get_shopCate_list("slide|auto|12", $img=false, $all=true, $class=$listtype_cate_class, G5_SHOP_URL.'/listtype.php?type='.$type);
+
+if($listtype_cate_center) echo '</div>';
 
 /*if($type=='all') {
 	echo get_shop_item_sort(G5_SHOP_URL.'/listtype.php?type=all');

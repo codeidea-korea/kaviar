@@ -63,6 +63,9 @@
 .shopCate-tags .swiper-slide{width:auto;}
 .shopCate-tags .cate{font-size:13px;font-weight:500;height:39px;padding:0 1.3em;background:#F6F6F6;border-radius:20px;display:inline-flex;align-items:center;justify-content:center;}
 .shopCate-tags .cate.active{background:var(--mainColor);color:#fff;}
+.listtypeCateWrap{width:var(--card-list-width);max-width:100%;margin-left:auto;margin-right:auto;margin-bottom:34px;}
+.listtypeCateWrap .shopCate-tags{padding-left:0 !important;padding-right:0 !important;justify-content:center;}
+.listtypeCateWrap .shopCate-tags .swiper-wrapper{justify-content:center;}
 
 
 

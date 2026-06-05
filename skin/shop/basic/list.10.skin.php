@@ -16,7 +16,7 @@ if($list_mod > 2.25) $_get_item_option .= ' itemSize_small';
 $listtype_card_script = isset($_SERVER['SCRIPT_NAME']) ? str_replace('\\', '/', $_SERVER['SCRIPT_NAME']) : '';
 $listtype_card_type = isset($_GET['type']) ? preg_replace('/[^0-9a-z]/i', '', $_GET['type']) : '';
 $listtype_card_width = isset($default['de_listtype_card_width']) ? (int)$default['de_listtype_card_width'] : 0;
-$listtype_card_enabled = preg_match('#/shop/listtype\.php$#', $listtype_card_script) && $listtype_card_type === '1' && $listtype_card_width > 0;
+$listtype_card_enabled = !G5_IS_MOBILE && preg_match('#/shop/listtype\.php$#', $listtype_card_script) && $listtype_card_type === '1' && $listtype_card_width > 0;
 $listtype_card_style = '';
 if($listtype_card_enabled) {
 	$_get_item_option .= ' cardSize_control';
