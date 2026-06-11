@@ -217,12 +217,13 @@ if (phpversion() >= '5.2.0') {
 			$it_info_values = $itemmodel['it_info_value'];
 
 			if($k==0){
+				$total_coupon = $row['od_cart_coupon'] + $row['od_coupon'] + $row['od_send_coupon'];
 				$d_price = number_format($row['od_send_cost'] + $row['od_send_cost2']); //배송비
 				$p_point = $row['od_receipt_point']; //적립금
-				$d_coupon = $row['od_coupon'];
+				$d_coupon = $total_coupon;
 				$s_price = ($ite['ct_price'] + $ite['io_price']) * $ite['ct_qty'];
-				$s_price1 = ($ite['ct_price'] + $ite['io_price']) * $ite['ct_qty'] - $row['od_receipt_point'] - $row['od_coupon'];
-				$s_price2 = $s_price + $row['od_send_cost'] + $row['od_send_cost2'];
+				$s_price1 = ($ite['ct_price'] + $ite['io_price']) * $ite['ct_qty'] - $row['od_receipt_point'] - $total_coupon;
+				$s_price2 = $s_price + $row['od_send_cost'] + $row['od_send_cost2'] - $total_coupon;
 				
 				//echo $ite['ct_price']." + ".$ite['io_price']." * ".$ite['ct_qty']." - ".$row['od_receipt_point']." - ".$row['od_coupon']." /// ".$s_price."<br>";
 			}else{
