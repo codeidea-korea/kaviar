@@ -15,7 +15,12 @@ $g5['title'] = '사용후기';
 include_once(G5_PATH.'/head.sub.php');
 
 $review = explode ("-", $it_id);
-$sql_common = " from `{$g5['g5_shop_item_use_table']}` where it_id like '".$review[0]."%' and is_confirm = '1' and is_file !='' ";
+if (strpos($it_id, '-') !== false) {
+    $review_it_id_sql = "it_id like '".$review[0]."-%'";
+} else {
+    $review_it_id_sql = "(it_id = '".$it_id."' or it_id like '".$it_id."-%')";
+}
+$sql_common = " from `{$g5['g5_shop_item_use_table']}` where {$review_it_id_sql} and is_confirm = '1' and is_file !='' ";
 
 // 테이블의 전체 레코드수만 얻음
 $sql = " select COUNT(*) as cnt " . $sql_common;

@@ -65,7 +65,12 @@ $itemuse_form = G5_SHOP_URL."/itemuseform.php?it_id=".$it_id;
 $itemuse_formupdate = G5_SHOP_URL."/itemuseformupdate.php?it_id=".$it_id;
 
 $review = explode ("-", $it_id);
-$sql_common = " from `{$g5['g5_shop_item_use_table']}` where it_id like '".$review[0]."%' and is_confirm = '1' ";
+if (strpos($it_id, '-') !== false) {
+    $review_it_id_sql = "it_id like '".$review[0]."-%'";
+} else {
+    $review_it_id_sql = "(it_id = '".$it_id."' or it_id like '".$it_id."-%')";
+}
+$sql_common = " from `{$g5['g5_shop_item_use_table']}` where {$review_it_id_sql} and is_confirm = '1' ";
 
 // 테이블의 전체 레코드수만 얻음
 $sql = " select COUNT(*) as cnt " . $sql_common;

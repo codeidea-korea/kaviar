@@ -26,7 +26,12 @@ $itemuse_photolist = G5_SHOP_URL.'/itemusephotolist.php';
 	<ul id="review_latest_thumb">
 		<?
 		$review = explode ("-", $it_id);
-		$photos = sql_query("select is_file,is_id,it_id from `g5_shop_item_use` where is_file != '' and is_confirm ='1' and it_id like '".$review[0]."%' order by is_id desc limit 6");
+		if (strpos($it_id, '-') !== false) {
+			$review_it_id_sql = "it_id like '".$review[0]."-%'";
+		} else {
+			$review_it_id_sql = "(it_id = '".$it_id."' or it_id like '".$it_id."-%')";
+		}
+		$photos = sql_query("select is_file,is_id,it_id from `g5_shop_item_use` where is_file != '' and is_confirm ='1' and {$review_it_id_sql} order by is_id desc limit 6");
 		$dirfile = G5_URL.'/data/member_review/';
 		$chks;
 		

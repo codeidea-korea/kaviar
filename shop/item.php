@@ -177,7 +177,12 @@ $star_score = get_star_image($it['it_id']);
 
 // 관리자가 확인한 사용후기의 개수를 얻음
 $review = explode ("-", $it_id);
-$sql = " select count(*) as cnt from `{$g5['g5_shop_item_use_table']}` where it_id like '".$review[0]."%' and is_confirm = '1' ";
+if (strpos($it_id, '-') !== false) {
+    $review_it_id_sql = "it_id like '".$review[0]."-%'";
+} else {
+    $review_it_id_sql = "(it_id = '".$it_id."' or it_id like '".$it_id."-%')";
+}
+$sql = " select count(*) as cnt from `{$g5['g5_shop_item_use_table']}` where {$review_it_id_sql} and is_confirm = '1' ";
 $row = sql_fetch($sql);
 $item_use_count = $row['cnt'];
 
