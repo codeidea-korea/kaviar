@@ -13,7 +13,7 @@ $_pop_disable_hours = 24;
 			
 			for ($i=0; $row=sql_fetch_array($result); $i++) {
 				if ($i==0) {
-					echo '<div class="mySwiper" data-per="1.35" data-gap="'.($bannerCount>1?'20':'0').'" data-loop="false" data-center="true" data-timer="4.65">';
+					echo '<div class="mySwiper" data-per="1" data-gap="'.($bannerCount>1?'20':'0').'" data-loop="false" data-center="true" data-timer="4.65" data-autoheight="true">';
 					echo '<div class="swiper-container">'.PHP_EOL;
 					echo '<div class="swiper-wrapper">'.PHP_EOL;
 				}
