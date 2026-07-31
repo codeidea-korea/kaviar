@@ -16,9 +16,6 @@ for ($i=0; $row=sql_fetch_array($result); $i++){
 
 	$od_id = isset($row['od_id']) ? safe_replace_regex($row['od_id'], 'od_id') : '';
 
-	// 장바구니 자료 취소
-	sql_query(" update {$g5['g5_shop_cart_table']} set ct_status = '취소' where od_id = '$od_id' ");
-
 	// 주문 취소
 	$cancel_memo = ($row['od_settle_case'] == '가상계좌') ? "가상계좌 3일 경과 미입금 자동취소" : "무통장 3일 경과 자동취소";
 	$cancel_price = $row['od_cart_price'];
@@ -77,6 +74,9 @@ for ($i=0; $row=sql_fetch_array($result); $i++){
 		}
 		
 	}
+	
+	// 장바구니 자료 취소
+	sql_query(" update {$g5['g5_shop_cart_table']} set ct_status = '취소' where od_id = '$od_id' ");
 	
 	
 	// 주문취소 회원의 포인트를 되돌려 줌
