@@ -9,7 +9,7 @@ $t_day = strtotime(date("Y-m-d H:i:s", $timestamp));
 
 $send_number = preg_replace("/[^0-9]/", "", $config['cf_aligo_sender']); // 발신자번호
 $sms_content14 = $default['de_sms_cont14'];
-$result = sql_query(" SELECT * FROM {$g5['g5_shop_order_table']} WHERE od_status = '주문' and od_settle_case = '무통장' and unix_timestamp(od_time) < ".$t_day." " );
+$result = sql_query(" SELECT * FROM {$g5['g5_shop_order_table']} WHERE od_status = '주문' and od_settle_case in ('무통장', '가상계좌') and od_misu > 0 and od_receipt_price = 0 and unix_timestamp(od_time) < ".$t_day." " );
 //$result = sql_query(" SELECT * FROM g5_shop_order WHERE od_status = '주문' " );
 
 for ($i=0; $row=sql_fetch_array($result); $i++){
@@ -20,7 +20,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++){
 	sql_query(" update {$g5['g5_shop_cart_table']} set ct_status = '취소' where od_id = '$od_id' ");
 
 	// 주문 취소
-	$cancel_memo = "무통장 3일 경과 자동취소";
+	$cancel_memo = ($row['od_settle_case'] == '가상계좌') ? "가상계좌 3일 경과 미입금 자동취소" : "무통장 3일 경과 자동취소";
 	$cancel_price = $row['od_cart_price'];
 
 	$sql = " update {$g5['g5_shop_order_table']}
@@ -35,7 +35,7 @@ for ($i=0; $row=sql_fetch_array($result); $i++){
 					od_coupon = '0',
 					od_send_coupon = '0',
 					od_status = '취소',
-					od_shop_memo = concat(od_shop_memo,\"\\n무통장 자동 취소 - ".G5_TIME_YMDHIS." (취소이유 : {$cancel_memo})\")
+					od_shop_memo = concat(od_shop_memo,\"\\n미입금 자동 취소 - ".G5_TIME_YMDHIS." (취소이유 : {$cancel_memo})\")
 				where od_id = '$od_id' ";
 	sql_query($sql);
 	
