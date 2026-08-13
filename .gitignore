@@ -57,3 +57,4 @@ Desktop.ini
 **/backup/
 repomix-output.xml
 vendor.tar
+*.md

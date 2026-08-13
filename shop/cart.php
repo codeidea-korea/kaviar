@@ -176,9 +176,20 @@ include_once('./_head.php');
 
 					$point      = $sum['point'];
 					$sell_price = $sum['price'];
+					$origin_price = $row['ct_origin_price'] * $row['ct_qty'];
+					$sale_price = ($row['ct_origin_price'] - $row['ct_price']) * $row['ct_qty'];
+					$tot_point_price = $point * $row['ct_qty'];
+					if($row['ct_send_cost'] == 0) {
+						$item_send_cost = get_item_sendcost($row['it_id'], $sum['price'], $sum['qty'], $s_cart_id);
+						$default_send_cost = $item_send_cost == -1 ? 1 : 0;
+						$item_send_cost = $item_send_cost > 0 ? $item_send_cost : 0;
+					} else {
+						$item_send_cost = 0;
+						$default_send_cost = 0;
+					}
 
 
-					echo '<li>';
+					echo '<li class="cart_item" data-origin-price="'.$origin_price.'" data-sale-price="'.$sale_price.'" data-point-price="'.$tot_point_price.'" data-sell-price="'.$sell_price.'" data-send-cost="'.$item_send_cost.'" data-default-send-cost="'.$default_send_cost.'">';
 						echo '<div class="li_chk">';
 							echo '<input type="checkbox" name="ct_chk['.$i.']" value="1" id="ct_chk_'.$i.'" checked="checked" class="selec_chk circle">';
 						echo '</div>';
@@ -259,12 +270,10 @@ include_once('./_head.php');
 							}
 						
 							
-							$sale_price = ($row['ct_origin_price'] - $row['ct_price']) * $row['ct_qty'];
 							//echo number_format($sale_price);
 						echo '</div>';
 						echo '<div class="li_point">';
-							echo number_format($point * $row['ct_qty'] );
-							$tot_point_price = $point * $row['ct_qty'];
+							echo number_format($tot_point_price);
 						echo '</div>';
 						echo '<div class="li_dvr">';
 							echo $ct_send_cost;
@@ -277,7 +286,7 @@ include_once('./_head.php');
 					$tot_point      += $tot_point_price;
 					$tot_sell_price += $sell_price;
 					$tot_sale_price += $sale_price;
-					$tot_origin_price += ($row['ct_origin_price'] * $row['ct_qty']);
+					$tot_origin_price += $origin_price;
 				} // for 끝
 
 				if ($i == 0) {
@@ -299,23 +308,23 @@ include_once('./_head.php');
 				<ul>
 					<li class="sod_bsk_dvr">
 						<span>상품금액</span>
-						<strong><?php echo number_format($tot_origin_price); ?></strong> 원
+						<strong data-cart-summary="origin"><?php echo number_format($tot_origin_price); ?></strong> 원
 					</li>
 					<li class="sod_bsk_dvr">
 						<span>할인금액</span>
-						<strong><?php echo number_format($tot_sale_price); ?></strong> 원
+						<strong data-cart-summary="sale"><?php echo number_format($tot_sale_price); ?></strong> 원
 					</li>
 					<li class="sod_bsk_dvr">
 						<span>배송비</span>
-						<strong><?php echo number_format($send_cost); ?></strong> 원
+						<strong data-cart-summary="send"><?php echo number_format($send_cost); ?></strong> 원
 					</li>
 					<li class="sod_bsk_pt">
 						<span>적립금</span>
-						<strong><?php echo number_format($tot_point); ?></strong> 점
+						<strong data-cart-summary="point"><?php echo number_format($tot_point); ?></strong> 점
 					</li>
 					<li class="sod_bsk_cnt">
 						<span>총 결제금액</span>
-						<strong><?php echo number_format($tot_price); ?>원</strong>
+						<strong><span data-cart-summary="total"><?php echo number_format($tot_price); ?></span>원</strong>
 					</li>
 				</ul>
 			</div>
@@ -340,7 +349,91 @@ include_once('./_head.php');
     </form>
 </div>
 
+<?php
+$cart_send_cost_limits = array();
+$cart_send_cost_list = array();
+
+foreach(explode(';', $default['de_send_cost_limit']) as $cost_limit) {
+	$cart_send_cost_limits[] = (int)preg_replace('/[^0-9]/', '', $cost_limit);
+}
+
+foreach(explode(';', $default['de_send_cost_list']) as $cost) {
+	$cart_send_cost_list[] = (int)preg_replace('/[^0-9]/', '', $cost);
+}
+?>
 <script>
+var cartDefaultSendCostEnabled = <?php echo $default['de_send_cost_case'] == '차등' ? 'true' : 'false'; ?>;
+var cartSendCostLimits = <?php echo json_encode($cart_send_cost_limits); ?>;
+var cartSendCostList = <?php echo json_encode($cart_send_cost_list); ?>;
+
+function cartNumber(value) {
+	value = parseInt(value, 10);
+	return isNaN(value) ? 0 : value;
+}
+
+function cartFormat(value) {
+	if(typeof number_format === "function") {
+		return number_format(String(value));
+	}
+
+	return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function getCartDefaultSendCost(totalPrice) {
+	var i = 0;
+
+	if(!cartDefaultSendCostEnabled) {
+		return 0;
+	}
+
+	for(i = 0; i < cartSendCostLimits.length; i++) {
+		if(totalPrice < cartNumber(cartSendCostLimits[i])) {
+			return cartNumber(cartSendCostList[i]);
+		}
+	}
+
+	return 0;
+}
+
+function updateCartSummary() {
+	var originPrice = 0;
+	var salePrice = 0;
+	var pointPrice = 0;
+	var sellPrice = 0;
+	var itemSendCost = 0;
+	var defaultSendPrice = 0;
+	var defaultSendCount = 0;
+	var checkedCount = 0;
+	var $cartItems = $("input[name^=ct_chk]");
+
+	$cartItems.filter(":checked").each(function() {
+		var $row = $(this).closest("li.cart_item");
+		checkedCount++;
+
+		originPrice += cartNumber($row.data("origin-price"));
+		salePrice += cartNumber($row.data("sale-price"));
+		pointPrice += cartNumber($row.data("point-price"));
+		sellPrice += cartNumber($row.data("sell-price"));
+
+		if(cartNumber($row.data("default-send-cost"))) {
+			defaultSendCount++;
+			defaultSendPrice += cartNumber($row.data("sell-price"));
+		} else {
+			itemSendCost += cartNumber($row.data("send-cost"));
+		}
+	});
+
+	var sendCost = checkedCount ? itemSendCost + (defaultSendCount ? getCartDefaultSendCost(defaultSendPrice) : 0) : 0;
+
+	$("[data-cart-summary=origin]").text(cartFormat(originPrice));
+	$("[data-cart-summary=sale]").text(cartFormat(salePrice));
+	$("[data-cart-summary=send]").text(cartFormat(sendCost));
+	$("[data-cart-summary=point]").text(cartFormat(pointPrice));
+	$("[data-cart-summary=total]").text(cartFormat(sellPrice + sendCost));
+
+	$("input[name=ct_all]").prop("checked", $cartItems.length > 0 && checkedCount === $cartItems.length);
+}
+
 $(function() {
     var close_btn_idx;
 
@@ -365,10 +458,15 @@ $(function() {
     // 모두선택
     $("input[name=ct_all]").click(function() {
         if($(this).is(":checked"))
-            $("input[name^=ct_chk]").attr("checked", true);
+            $("input[name^=ct_chk]").prop("checked", true);
         else
-            $("input[name^=ct_chk]").attr("checked", false);
+            $("input[name^=ct_chk]").prop("checked", false);
+
+		updateCartSummary();
     });
+
+	$("input[name^=ct_chk]").change(updateCartSummary);
+	updateCartSummary();
 
     // 옵션수정 닫기
     $(document).on("click", "#mod_option_close", function() {
