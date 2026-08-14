@@ -23,7 +23,7 @@ if($list_mod > 2.25) $_get_item_option .= ' itemSize_small';
 <?php
 $i = 0;
 foreach((array) $list as $row){
-	if( empty($row) ) continue;
+	if( empty($row) || !empty($row['it_use_show']) ) continue;
 
 	$item_link_href = shop_item_url($row['it_id']);     // 상품링크
 	$star_score = $row['it_use_avg'] ? (int) get_star($row['it_use_avg']) : '';     //사용자후기 평균별점

@@ -16,7 +16,7 @@ if( isset($row['it_seo_title']) && ! $row['it_seo_title'] ){
     shop_seo_title_update($row['it_id']);
 }
 
-if (!($it['ca_use'] && $it['it_use'])) {
+if (!($it['ca_use'] && $it['it_use']) || !empty($it['it_use_show'])) {
     if (!$is_admin)
         alert('판매가능한 상품이 아닙니다.');
 }
