@@ -49,9 +49,9 @@ if(file_exists(G5_DATA_PATH.'/logo/shop_favorite.ico')) echo '<link rel="shortcu
 
 if($config['cf_add_meta']) echo $config['cf_add_meta'].PHP_EOL;
 
-$shopmain_img_path = G5_DATA_PATH.'/file/shop_main.png';
-$shopmain_img_url = G5_DATA_URL.'/file/shop_main.png';
-if(file_exists($shopmain_img_path)) echo '<meta property="og:image" content="'.get_url($shopmain_img_url).'" />';
+$sitemain_img_path = G5_DATA_PATH.'/file/site_main.png';
+$sitemain_img_url = G5_DATA_URL.'/file/site_main.png';
+if(file_exists($sitemain_img_path)) echo '<meta property="og:image" content="'.get_url($sitemain_img_url).'" />';
 ?>
 <title><?php echo $g5_head_title; ?></title>
 <?php
