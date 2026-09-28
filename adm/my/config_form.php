@@ -21,7 +21,7 @@ if (!isset($config['cf_show_include_admin'])) {
 }
 ?>
 
-<form name="fconfigform" id="fconfigform" method="post" onsubmit="return fconfigform_submit(this);">
+<form name="fconfigform" id="fconfigform" method="post" enctype="multipart/form-data" onsubmit="return fconfigform_submit(this);">
 <input type="hidden" name="token" value="" id="token">
 
 
@@ -111,7 +111,7 @@ if (!isset($config['cf_show_include_admin'])) {
 				$sitemain_img_path = G5_DATA_PATH.'/file/site_main.png';
 				$sitemain_img_url = G5_DATA_URL.'/file/site_main.png';
 				$upImg_sitemain_img = file_exists($sitemain_img_path) ? '<img src="'.get_url($sitemain_img_url).'"><label class="del_file"><input type="checkbox" name="del_sitemain_img" value="1">삭제</label>' : '';
-				echo '<input type="file" name="site_main" class="myfile">';
+				echo '<input type="file" name="site_main" class="myfile" accept=".gif,.jpg,.jpeg,.png,image/gif,image/jpeg,image/png">';
 				echo '<div class="upImg">'.$upImg_sitemain_img.'</div>';
 				if(file_exists($sitemain_img_path)) {
 					echo '<p class="help-block mt10">&lt;meta property="og:image" content="'.$sitemain_img_url.'" /&gt; <b>적용됨</b></p>';

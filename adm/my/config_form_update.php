@@ -20,6 +20,42 @@ if (! (isset($mb['mb_id']) && $mb['mb_id']))
 
 check_admin_token();
 
+// 사이트 대표이미지 업로드 및 삭제
+$site_main_path = G5_DATA_PATH.'/file/site_main.png';
+$site_main_upload_error = isset($_FILES['site_main']['error']) ? $_FILES['site_main']['error'] : UPLOAD_ERR_NO_FILE;
+
+if ($site_main_upload_error !== UPLOAD_ERR_NO_FILE) {
+    if ($site_main_upload_error !== UPLOAD_ERR_OK || !is_uploaded_file($_FILES['site_main']['tmp_name'])) {
+        alert('사이트 대표이미지 업로드 중 오류가 발생했습니다.');
+    }
+
+    $site_main_name = isset($_FILES['site_main']['name']) ? $_FILES['site_main']['name'] : '';
+    $site_main_extension = strtolower(pathinfo($site_main_name, PATHINFO_EXTENSION));
+    $site_main_info = @getimagesize($_FILES['site_main']['tmp_name']);
+    $site_main_allowed_extensions = array('gif', 'jpg', 'jpeg', 'png');
+    $site_main_allowed_types = array(IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG);
+
+    if (!in_array($site_main_extension, $site_main_allowed_extensions, true) ||
+        !$site_main_info || !in_array($site_main_info[2], $site_main_allowed_types, true)) {
+        alert('올바른 이미지 파일이 아닙니다. GIF, JPG, PNG 파일만 업로드할 수 있습니다.');
+    }
+
+    $site_main_dir = dirname($site_main_path);
+    if (!is_dir($site_main_dir) || !is_writable($site_main_dir)) {
+        alert('사이트 대표이미지를 저장할 수 없습니다. data/file 디렉터리의 쓰기 권한을 확인해 주십시오.');
+    }
+
+    if (!move_uploaded_file($_FILES['site_main']['tmp_name'], $site_main_path)) {
+        alert('사이트 대표이미지를 저장하지 못했습니다.');
+    }
+
+    @chmod($site_main_path, G5_FILE_PERMISSION);
+} else if (!empty($_POST['del_sitemain_img']) && file_exists($site_main_path)) {
+    if (!@unlink($site_main_path)) {
+        alert('기존 사이트 대표이미지를 삭제하지 못했습니다. data/file 디렉터리의 쓰기 권한을 확인해 주십시오.');
+    }
+}
+
 $cf_social_servicelist = !empty($_POST['cf_social_servicelist']) ? implode(',', $_POST['cf_social_servicelist']) : '';
 
 $check_keys = array('cf_cert_kcb_cd', 'cf_cert_kcp_cd', 'cf_editor', 'cf_recaptcha_site_key', 'cf_recaptcha_secret_key', 'cf_naver_clientid', 'cf_naver_secret', 'cf_facebook_appid', 'cf_facebook_secret', 'cf_twitter_key', 'cf_twitter_secret', 'cf_google_clientid', 'cf_google_secret', 'cf_googl_shorturl_apikey', 'cf_kakao_rest_key', 'cf_kakao_client_secret', 'cf_kakao_js_apikey', 'cf_payco_clientid', 'cf_payco_secret','cf_cert_kg_cd','cf_cert_kg_mid');
