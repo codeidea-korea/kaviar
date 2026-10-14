@@ -415,6 +415,9 @@
 	#_main_pop_con .mySwiper .swiper-slide.swiper-slide-active{transform:scale(1);}
 	#_main_pop_con .mySwiper .swiper-slide a{display:flex;align-items:center;justify-content:center;max-width:100%;}
 	#_main_pop_con .mySwiper .swiper-slide img{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100vh - 160px);max-height:calc(100dvh - 160px);object-fit:contain;margin:0 auto;}
+	#_main_pop.mobileMainPopup #_main_pop_con .mySwiper .swiper-container,
+	#_main_pop.mobileMainPopup #_main_pop_con .mySwiper .swiper-wrapper,
+	#_main_pop.mobileMainPopup #_main_pop_con .mySwiper .swiper-slide{height:auto !important;}
 	#_main_pop_con .mySwiper .swiper-pagination-bullet{width:7px;height:7px;background:rgba(255,255,255,0.5);}
 	#_main_pop_con .mySwiper .swiper-pagination-bullet.swiper-pagination-bullet-active{background:rgba(255,255,255,1);}
 	#_main_pop_bottom{position:relative;z-index:3;font-size:15px;display:flex;align-items:center;justify-content:center;gap:40px;color:#fff;margin-top:20px;}

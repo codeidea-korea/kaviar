@@ -7,13 +7,13 @@ $max_width = $max_height = 0;
 
 $_pop_disable_hours = 24;
 //if($_SERVER["REMOTE_ADDR"] == "121.161.30.109"){
-	echo '<div id="_main_pop" class="mobile-max-width" style="display:none;">';
+	echo '<div id="_main_pop" class="mobile-max-width'.(G5_IS_MOBILE?' mobileMainPopup':'').'" style="display:none;">';
 		echo '<div id="_main_pop_con">';
 			if($is_admin == 'super') echo '<a href="'.$_adm_url.'/?&pn=_shop_banner&bn_position=메인 팝업&title=쇼핑몰 배너관리" class="btnSetting light popWin" data-width="1250" data-height="600" data-top="60" data-left="0" data-area="#_main_pop_con">쇼핑몰 배너관리</a>';
 			
 			for ($i=0; $row=sql_fetch_array($result); $i++) {
 				if ($i==0) {
-					echo '<div class="mySwiper" data-per="1" data-gap="'.($bannerCount>1?'20':'0').'" data-loop="false" data-center="true" data-timer="4.65" data-autoheight="true">';
+					echo '<div class="mySwiper" data-per="1" data-gap="'.($bannerCount>1?'20':'0').'" data-loop="false" data-center="true" data-timer="4.65" data-autoheight="'.(G5_IS_MOBILE?'false':'true').'">';
 					echo '<div class="swiper-container">'.PHP_EOL;
 					echo '<div class="swiper-wrapper">'.PHP_EOL;
 				}
@@ -44,7 +44,8 @@ $_pop_disable_hours = 24;
 					else if ($row['bn_url'] && $row['bn_url'] != 'http://') {
 						$banner .= '<a href="'.G5_SHOP_URL.'/bannerhit.php?bn_id='.$row['bn_id'].'"'.$bn_new_win.'>';
 					}
-					echo $banner.'<img src="'.G5_DATA_URL.'/banner/'.$row['bn_id'].'" width="'.$size[0].'" alt="'.get_text($row['bn_alt']).'"'.$bn_border.' style="border-radius: 15px;">';
+					$image_height = G5_IS_MOBILE ? ' height="'.$size[1].'"' : '';
+					echo $banner.'<img src="'.G5_DATA_URL.'/banner/'.$row['bn_id'].'" width="'.$size[0].'"'.$image_height.' alt="'.get_text($row['bn_alt']).'"'.$bn_border.' style="border-radius: 15px;">';
 					if($banner)
 						echo '</a>'.PHP_EOL;
 					echo '</div>'.PHP_EOL;
