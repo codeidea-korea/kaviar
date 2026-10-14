@@ -138,10 +138,9 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 #header .hdIcon_close{position:absolute;top:12px;right:15px;font-size:0;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;}
 #header .hdIcon_close:before{content:'\e91d';font-family:'intaefont';font-size:15px;}
 
-#header .topMenuContainer{padding:0;position:sticky;top:0;left:0;background:#fff;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;transition:all .2s ease-in-out;}
-#header .topMenuContainer::-webkit-scrollbar{display:none;}
-#header .topMenuContainer ul{width:max-content;min-width:100%;height:100%;padding:0 25px;display:flex;align-items:center;justify-content:flex-start;gap:24px;white-space:nowrap;}
-#header .topMenuContainer ul li{height:100%;flex:0 0 auto;}
+#header .topMenuContainer{padding:0 25px;position:sticky;top:0;left:0;background:#fff;transition:all .2s ease-in-out;}
+#header .topMenuContainer ul{height:100%;display:flex;align-items:center;justify-content:space-between;}
+#header .topMenuContainer ul li{height:100%;}
 #header .topMenuContainer ul a{position:relative;font-size:15px;font-weight:var(--bold);padding:0 2px;height:100%;display:inline-flex;align-items:center;justify-content:center;}
 #header .topMenuContainer ul a.active{font-weight:600;}
 #header .topMenuContainer ul a.active:after{content:'';width:100%;height:2px;background:var(--mainColor);position:absolute;bottom:0;left:0;}
