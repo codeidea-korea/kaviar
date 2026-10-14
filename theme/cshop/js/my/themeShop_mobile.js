@@ -78,35 +78,6 @@ $(document).ready(function(){
 			$('#_shopCateMenuContainer').removeClass('open');
 		}
 	});
-
-	// 모바일 상단 카테고리 메뉴
-	function setMobileTopMenu(isOpen) {
-		var $menu = $('#mobileTopMenu');
-		var $opener = $('.mobileTopMenuOpener');
-
-		if(!$menu.length) return;
-
-		$menu.toggleClass('open', isOpen).attr('aria-hidden', isOpen ? 'false' : 'true');
-		$('.mobileTopMenuBackdrop').toggleClass('open', isOpen).attr('aria-hidden', isOpen ? 'false' : 'true');
-		$opener.attr('aria-expanded', isOpen ? 'true' : 'false');
-		$('html, body').toggleClass('mobile-top-menu-open', isOpen);
-
-		if(isOpen) {
-			setTimeout(function() {
-				$menu.find('.mobileTopMenuCloser').focus();
-			}, 280);
-		} else {
-			$opener.first().focus();
-		}
-	}
-
-	$(document).on('click', '.mobileTopMenuOpener', function() {
-		setMobileTopMenu(true);
-	}).on('click', '.mobileTopMenuCloser, .mobileTopMenuBackdrop, #mobileTopMenu a', function() {
-		setMobileTopMenu(false);
-	}).on('keydown', function(e) {
-		if(e.key === 'Escape' && $('#mobileTopMenu').hasClass('open')) setMobileTopMenu(false);
-	});
 	
 
 	$('#_item_filter_opner').click(function() {

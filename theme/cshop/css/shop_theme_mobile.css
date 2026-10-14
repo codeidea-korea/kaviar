@@ -129,9 +129,6 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 #header .headerContainer .hdIcon_brand .myIcon:before{content:'\e9ce';font-family:'myfont';font-size:22px;font-weight:normal;}
 #header .headerContainer .hdIcon_partners{position:relative;margin-top:-6px;}
 #header .headerContainer .hdIcon_partners .myIcon:before{content:'';width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;background:url('./img/partners_c.svg') no-repeat center / 100%;}
-#header .headerContainer .mobileTopMenuOpener{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;}
-#header .headerContainer .mobileTopMenuIcon{width:22px;height:18px;display:flex;flex-direction:column;justify-content:space-between;}
-#header .headerContainer .mobileTopMenuIcon i{width:100%;height:2px;display:block;background:var(--header-color);border-radius:2px;}
 
 #header .headerContainer ._gnbOpener{display:inline-flex;transform:scale(0.9);}
 #header .hdIcon_gotoback{font-size:0;}
@@ -141,29 +138,17 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
 #header .hdIcon_close{position:absolute;top:12px;right:15px;font-size:0;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;}
 #header .hdIcon_close:before{content:'\e91d';font-family:'intaefont';font-size:15px;}
 
-html.mobile-top-menu-open, body.mobile-top-menu-open{overflow:hidden;}
-#header .mobileTopMenuBackdrop{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.42);opacity:0;visibility:hidden;transition:opacity .25s ease, visibility .25s ease;}
-#header .mobileTopMenuBackdrop.open{opacity:1;visibility:visible;}
-#header .mobileTopMenu{position:fixed;top:0;right:0;z-index:101;width:82vw;max-width:340px;height:100vh;height:100dvh;padding-bottom:env(safe-area-inset-bottom);background:#fff;color:#151515;overflow-y:auto;transform:translateX(100%);visibility:hidden;box-shadow:-8px 0 24px rgba(0,0,0,0.12);transition:transform .28s ease, visibility .28s ease;}
-#header .mobileTopMenu.open{transform:translateX(0);visibility:visible;}
-#header .mobileTopMenuHeader{height:70px;padding:env(safe-area-inset-top) 22px 0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(0,0,0,0.1);}
-#header .mobileTopMenuHeader strong{font-size:20px;font-weight:700;}
-#header .mobileTopMenuCloser{position:relative;width:32px;height:32px;cursor:pointer;}
-#header .mobileTopMenuCloser:before, #header .mobileTopMenuCloser:after{content:'';position:absolute;top:15px;left:5px;width:22px;height:2px;background:#151515;border-radius:2px;}
-#header .mobileTopMenuCloser:before{transform:rotate(45deg);}
-#header .mobileTopMenuCloser:after{transform:rotate(-45deg);}
-#header .mobileTopMenuList{padding:12px 22px 32px;}
-#header .mobileTopMenuList ul{display:flex;flex-direction:column;}
-#header .mobileTopMenuList li+li{border-top:1px solid rgba(0,0,0,0.08);}
-#header .mobileTopMenuList a{position:relative;min-height:56px;padding:0 8px;font-size:17px;font-weight:var(--bold);display:flex;align-items:center;}
-#header .mobileTopMenuList a.active{color:var(--mainColor);font-weight:700;}
-#header .mobileTopMenuList a.active:before{content:'';position:absolute;left:0;top:50%;width:3px;height:20px;background:var(--mainColor);border-radius:2px;transform:translateY(-50%);}
+#header .topMenuContainer{padding:0 25px;position:sticky;top:0;left:0;background:#fff;transition:all .2s ease-in-out;}
+#header .topMenuContainer ul{height:100%;display:flex;align-items:center;justify-content:space-between;}
+#header .topMenuContainer ul li{height:100%;}
+#header .topMenuContainer ul a{position:relative;font-size:15px;font-weight:var(--bold);padding:0 2px;height:100%;display:inline-flex;align-items:center;justify-content:center;}
+#header .topMenuContainer ul a.active{font-weight:600;}
+#header .topMenuContainer ul a.active:after{content:'';width:100%;height:2px;background:var(--mainColor);position:absolute;bottom:0;left:0;}
 
 #header[data-ui*='type_left'] #logo{position:absolute;left:25px;}
 #header[data-ui*='type_left'] .headerIconCon{position:absolute;right:25px;}
 #header[data-ui*='type_right'] #logo{position:absolute;right:25px;}
 #header[data-ui*='type_right'] .headerIconCon{position:absolute;left:25px;}
-#header[data-ui*='type_right'] .mobileTopMenuOpener{order:0;}
 #header[data-ui*='type_right'] .hdIcon_gnb{order:1;}
 #header[data-ui*='type_right'] .hdIcon_search{order:2;}
 #header[data-ui*='type_right'] .hdIcon_cart{order:3;}
