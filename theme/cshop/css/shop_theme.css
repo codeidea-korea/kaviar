@@ -186,7 +186,7 @@ input[type="text"]:read-only{background:var(--form-background) !important;}
 #header.scroll #hdInner-3{flex:1;}
 #header.scroll #hdInner-3 .topGnbOpener{position:relative;}
 #header.scroll #hdInner-3 .topMenuContainer{width:auto;flex:1;}
-#header.scroll #hdInner-3 .topMenuContainer ul{justify-content:flex-end;gap:60px;}
+#header.scroll #hdInner-3 .topMenuContainer ul{justify-content:flex-end;gap:40px;}
 
 
 #headerSpace{height:var(--header-height);}
